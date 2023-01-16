@@ -1,3 +1,190 @@
-div {
-    background-color: rebeccapurple;
+body {
+    /* background-color: rgb(0, 0, 0); */
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+h1 {
+    margin: 0;
+    color: rgb(124, 105, 209);
+    font-size: 4rem;
+    text-align: center;
+}
+
+h2 {
+    margin: 0;
+}
+
+.modal {
+    background-color: rgb(29, 29, 29);
+    border-radius: 10px;
+    border: 2px solid aquamarine;
+}
+
+.content {}
+
+.container {
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px;
+}
+
+.sectionOne {
+    border: 2px dashed red;
+    /* text-align: center;
+    width: 200px; */
+    padding: 0;
+    margin: 0;
+}
+
+.sectionTwo {
+    border: 2px dashed rgb(204, 0, 255);
+    padding: 10px;
+}
+
+.sectionThree {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: grid;
+    font-size: 1.2rem;
+    /* grid-template-rows: repeat(auto-fit, minmax(100px, 1fr)); */
+    gap: 5px;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form>div>input {
+    text-align: center;
+    border-radius: 10px;
+    font-size: 3rem;
+    margin: 10px;
+}
+
+.dateDiv {
+    text-align: center;
+}
+
+.saveBtnDiv,
+.statusDiv {
+    display: flex;
+}
+
+.saveBtn,
+.statusBtnHigh,
+.statusBtnLow,
+.statusBtnOff {
+    background-color: rgb(167, 97, 238);
+    color: aliceblue;
+    cursor: pointer;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.statusBtnHigh {
+    background-color: red;
+}
+
+.statusBtnLow {
+    background-color: rgb(127, 168, 255);
+}
+
+.statusBtnOff {
+    background-color: grey;
+}
+
+.hud {
+    display: grid;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 10px;
+    padding-left: 35px;
+    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    justify-items: center;
+}
+
+.todoMain {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 35px 1fr;
+    align-items: center;
+    border-radius: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    transition: 1s;
+    background-color: rgba(220, 233, 204, 0.404);
+}
+
+.todoDetails {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    border-radius: 10px;
+    justify-items: center;
+}
+
+.addTodoDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(1, 56, 15, 0.486);
+    background-color: rgba(200, 212, 203, 0.486);
+    color: rgb(49, 182, 182);
+    border-radius: 10px;
+    padding-left: 5px;
+    gap: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.addTodoBtn {
+    all: unset;
+    display: flex;
+    font-size: 1.2rem;
+    flex-grow: 1;
+    font-weight: bold;
+}
+
+.todoSign {
+    height: 20px;
+    width: 20px;
+    display: flex;
+    cursor: pointer;
+    background: url('../img/check1.png') center/contain;
+}
+
+.addTodoOnOff {
+    height: 20px;
+    width: 20px;
+    display: flex;
+    cursor: pointer;
+    background: url('../img/add.png') center/contain;
+}
+
+.deleteBtn {
+    width: 30px;
+    background: url('../img/delete.png') center/contain no-repeat;
+    cursor: pointer;
+}
+
+
+
+.hud>div {
+    /* border-bottom: 2px dashed rebeccapurple; */
+}
+
+.todoMain:hover {
+    background-color: rgba(109, 109, 108, 0.281);
+    transform: scale(1.01);
+}
+
+.addItem {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    border-radius: 10px;
+    justify-items: center;
 }
