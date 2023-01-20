@@ -1,5 +1,4 @@
 body {
-    /* background-color: rgb(0, 0, 0); */
     font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
@@ -47,42 +46,93 @@ h2 {
     padding-right: 10px;
     display: grid;
     font-size: 1.2rem;
-    /* grid-template-rows: repeat(auto-fit, minmax(100px, 1fr)); */
     gap: 5px;
 }
 
+.sectionFour {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 1.2rem;
+    /* display: grid; */
+    display: none;
+    gap: 5px;
+}
 
 form {
     display: flex;
     flex-direction: column;
+    /* background-color: rgba(220, 233, 204, 0.404); */
+    background-color: rgba(220, 233, 204, 0.404);
+    margin: 0;
 }
 
 form>div>input {
-    text-align: center;
+    /* text-align: center; */
+    border: none;
+    font-size: 1rem;
+    background: none;
+    outline: none;
+    transition: 1s;
+    display: flex;
+    flex-grow: 1;
+}
+
+input[type=button] {
     border-radius: 10px;
-    font-size: 3rem;
-    margin: 10px;
+    font-size: large;
+}
+
+input[type=date] {
+    cursor: text
+}
+
+input[type=text]:focus {
+    border-radius: 0px;
+    /* border-bottom: 2px solid black; */
+}
+
+input[type=button]:hover {
+    transform: scale(0.8);
 }
 
 .dateDiv {
     text-align: center;
 }
 
-.saveBtnDiv,
-.statusDiv {
+.statusDiv,
+.saveBtnDiv {
     display: flex;
 }
 
-.saveBtn,
+.statusDiv {
+    margin-right: 100px;
+}
+
+.saveBtn {
+    background-color: rgb(42, 42, 43);
+    color: aliceblue;
+    cursor: pointer;
+    border: 1px solid rgb(161, 161, 161);
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    padding: 6px;
+}
+
 .statusBtnHigh,
 .statusBtnLow,
 .statusBtnOff {
-    background-color: rgb(167, 97, 238);
+    background-color: rgb(42, 42, 43);
     color: aliceblue;
     cursor: pointer;
     display: flex;
     flex-grow: 1;
     justify-content: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    border: 1px solid rgb(161, 161, 161);
 }
 
 .statusBtnHigh {
@@ -97,21 +147,30 @@ form>div>input {
     background-color: grey;
 }
 
+.addItem {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(150px, 1fr));
+    border-radius: 10px;
+    /* justify-items: center; */
+    padding-left: 20px;
+    align-items: center;
+}
+
 .hud {
     display: grid;
     border-radius: 10px;
     font-weight: bold;
     font-size: 1.2rem;
     margin: 10px;
-    padding-left: 35px;
-    grid-template-columns: repeat(5, minmax(100px, 1fr));
-    justify-items: center;
+    grid-template-columns: repeat(6, minmax(100px, 1fr));
+    /* padding-left: 20px; */
+    /* justify-items: center; */
 }
 
 .todoMain {
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: 35px 1fr;
+    grid-template-columns: 1fr;
     align-items: center;
     border-radius: 10px;
     padding-top: 3px;
@@ -122,9 +181,15 @@ form>div>input {
 
 .todoDetails {
     display: grid;
-    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    grid-template-columns: repeat(6, minmax(100px, 1fr));
     border-radius: 10px;
-    justify-items: center;
+    padding-left: 10px;
+}
+
+.todoNameDiv {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .addTodoDiv {
@@ -150,11 +215,13 @@ form>div>input {
 }
 
 .todoSign {
-    height: 20px;
-    width: 20px;
+    height: 15px;
+    width: 15px;
     display: flex;
     cursor: pointer;
-    background: url('../img/check1.png') center/contain;
+    border: 2px solid rgb(70, 68, 68);
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
 }
 
 .addTodoOnOff {
@@ -165,26 +232,68 @@ form>div>input {
     background: url('../img/add.png') center/contain;
 }
 
-.deleteBtn {
+.todoDeleteBtn {
     width: 30px;
     background: url('../img/delete.png') center/contain no-repeat;
     cursor: pointer;
 }
 
-
+.todoMinimizeBtn {
+    background-color: black;
+    border-radius: 10px;
+    color: snow;
+    cursor: pointer;
+}
 
 .hud>div {
     /* border-bottom: 2px dashed rebeccapurple; */
 }
 
-.todoMain:hover {
-    background-color: rgba(109, 109, 108, 0.281);
-    transform: scale(1.01);
+.todoSign:hover {
+    background-color: rgb(178, 248, 86);
+    opacity: 0.7;
 }
 
-.addItem {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(100px, 1fr));
+.todoMain:hover {
+    /* background-color: rgba(109, 109, 108, 0.281);
+    transform: scale(1.01); */
+    /* cursor: pointer; */
+}
+
+/* onClick classList */
+
+
+.onClickHideToDoDetails {
+    display: none;
+}
+
+.onClickTodoDate {
+    display: flex;
+    align-self: end;
+}
+
+.onClickSectionThreeShrink {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.onClickTodoMainShrink {
+    background-color: rgb(223, 189, 189);
     border-radius: 10px;
-    justify-items: center;
+    padding: 10px;
+    width: 20%;
+}
+
+.onClickTodoDetailsShrink {
+    display: flex;
+    flex-direction: column;
+}
+
+.onClickFillTodoSign {
+    background-color: rgba(0, 0, 0, 0.486);
+    border-color: white;
+}
+
+.signStyle {
+    background-color: rgba(0, 0, 0, 0.404);
+    opacity: 0.2;
 }

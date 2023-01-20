@@ -1,39 +1,48 @@
 let todoMain;
-let todoSign;
 let todoDetails;
+let todoNameDiv;
+let todoSign;
 let todoName;
 let todoDescription;
 let todoStatus;
 let todoDate;
-let deleteBtn;
+let todoDeleteBtn;
+let todoMinimizeBtn;
 const hud = document.querySelector('.hud');
 const sectionThree = document.createElement('div');
+const sectionFour = document.querySelector('.sectionFour');
 
 
 export default function todoCreatedOnSaveBtnPress() {
+    todoMinimizeBtn = document.createElement('button');
     todoMain = document.createElement('div');
     todoDetails = document.createElement('div');
+    todoNameDiv = document.createElement('div');
     todoSign = document.createElement('div');
     todoName = document.createElement('div');
     todoDescription = document.createElement('div');
     todoStatus = document.createElement('div');
     todoDate = document.createElement('div');
-    deleteBtn = document.createElement('div');
+    todoDeleteBtn = document.createElement('div');
 
 
+    todoMinimizeBtn.classList.add('todoMinimizeBtn');
+    todoMinimizeBtn.textContent = 'Minimize';
     sectionThree.classList.add('sectionThree');
     todoMain.classList.add('todoMain');
     todoDetails.classList.add('todoDetails');
+    todoNameDiv.classList.add('todoNameDiv');
     todoSign.classList.add('todoSign');
     todoName.classList.add('todoName');
     todoDescription.classList.add('todoDescription');
     todoStatus.classList.add('todoStatus');
     todoDate.classList.add('todoDate');
-    deleteBtn.classList.add('deleteBtn');
+    todoDeleteBtn.classList.add('todoDeleteBtn');
 
-    deleteBtn.textContent = '';
-    todoDetails.append(todoName, todoDescription, todoStatus, todoDate, deleteBtn);
-    todoMain.append(todoSign, todoDetails);
+    todoDeleteBtn.textContent = '';
+    todoDetails.append(todoSign, todoNameDiv, todoDescription, todoStatus, todoDate, todoDeleteBtn, todoMinimizeBtn);
+    todoNameDiv.append(todoSign, todoName);
+    todoMain.append(todoDetails);
     sectionThree.append(todoMain);
     hud.after(sectionThree);
 }
@@ -42,4 +51,4 @@ export default function todoCreatedOnSaveBtnPress() {
 
 
 
-export { sectionThree, todoMain, todoDetails, todoSign, todoName, todoDescription, todoStatus, todoDate, deleteBtn };
+export { sectionThree, sectionFour, todoMain, todoDetails, todoSign, todoName, todoDescription, todoStatus, todoDate, todoDeleteBtn, todoMinimizeBtn };

@@ -1,7 +1,7 @@
 import './style.css';
-import { addTodoBtn } from './dom';
+import { addTodoBtn, addTodoDiv } from './dom';
 import { modal, saveBtn, descriptionBtn, dateBtn, statusBtnHigh, statusBtnLow, statusBtnOff, selectedStatusBtn } from './modalBar'
-import todoCreatedOnSaveBtnPress, { sectionThree, todoMain, todoDetails, todoName, todoDescription, todoStatus, todoDate, deleteBtn } from './eachTodoItem';
+import todoCreatedOnSaveBtnPress, { sectionThree, sectionFour, todoMain, todoDetails, todoSign, todoName, todoDescription, todoStatus, todoDate, todoDeleteBtn, todoMinimizeBtn } from './eachTodoItem';
 
 
 const nameBtn = document.querySelector('.nameBtn');
@@ -19,18 +19,21 @@ class TodoClass {
     }
 }
 
-function showModal() {
-    addTodoBtn.addEventListener("click", e => {
-        modal.showModal();
+function addTodo() {
+    addTodoBtn.addEventListener("click", () => {
+        addTodoDiv.style.display = 'none';
+        sectionFour.style.display = 'grid';
     });
 }
 
 function removeTodo() {
-    deleteBtn.addEventListener("click", () => {
-        todoMain.remove();
+    todoDeleteBtn.addEventListener("click", (e) => {
+        e.currentTarget.parentNode.parentElement.remove(); // select todoMain and remove
+        // todoMain.remove();
         console.log('Delete')
-    })
+    });
 }
+
 
 function DisplayTodoList() {
     console.log(obj.sike[0]);
@@ -43,31 +46,45 @@ function DisplayTodoList() {
     todoStatus.textContent = `${obj.sike[0].status}`;
 }
 
+function minimizeTodoDetailsFnc(e) {
+    e.currentTarget.parentNode.parentElement.classList.toggle(`onClickTodoMainShrink`); // Selects todoMain
+    e.currentTarget.parentElement.classList.toggle('onClickTodoDetailsShrink'); // Selects todoDetails
+    e.currentTarget.parentNode.childNodes[1].classList.toggle('onClickHideToDoDetails'); // Selects todoDescription
+    e.currentTarget.parentNode.childNodes[2].classList.toggle('onClickHideToDoDetails'); // Selects todoStatus
+    e.currentTarget.parentNode.childNodes[3].classList.toggle('onClickTodoDate'); // Selects todoDate
 
-function userInputTodo() {
-    const dateBtnIndianFormat = dateBtn.value.split('-').reverse().join('-');
-    console.log(dateBtnIndianFormat);
-    const listItem = new TodoClass(nameBtn.value, descriptionBtn.value, dateBtnIndianFormat, obj.currentStatus);
-    obj.sike.unshift(listItem);
-    console.log()
+    if (e.currentTarget.parentNode.parentElement.classList.contains(`onClickTodoMainShrink`)) {
+        e.currentTarget.parentNode.childNodes[5].textContent = 'Maximize';
+    }
+    else {
+        e.currentTarget.parentNode.childNodes[5].textContent = 'Minimize';
+    }
+}
+
+function minimizeTodoDetails() {
+    todoMinimizeBtn.addEventListener("click", minimizeTodoDetailsFnc);
 }
 
 
-function predefinedTodo() {
-    const listItemTwo = new TodoClass('Messi', 'GOAT', '2-11-1990', 'High');
-    obj.sike.push(listItemTwo);
-    DisplayTodoList();
-    removeTodo();
-} predefinedTodo();
+function fillSignTodoStyleFnc(e) {
+    console.log('click');
+    e.currentTarget.classList.toggle('signStyle');
+}
 
+function fillSignTodoFnc(e) {
+    console.log('click');
+    e.currentTarget.classList.toggle('onClickFillTodoSign');
+    const todoMainAll = document.querySelectorAll(`.todoMain`);
+    todoMainAll.forEach(items => {
+        items.addEventListener("click", fillSignTodoStyleFnc)
+    })
+}
 
-function closeModal() {
-    saveBtn.addEventListener("click", () => {
-        userInputTodo()
-        DisplayTodoList();
-        modal.close();
-        removeTodo();
-    });
+function fillSignTodo() {
+    const todoSigns = document.querySelectorAll(`.todoSign`);
+    todoSigns.forEach(items => {
+        items.addEventListener("click", fillSignTodoFnc)
+    })
 }
 
 function selectedStatus() {
@@ -77,9 +94,39 @@ function selectedStatus() {
             console.log(obj.currentStatus);
         });
     });
-} selectedStatus();
+}
 
-showModal();
-closeModal();
+function predefinedTodo() {
+    const listItemTwo = new TodoClass('Messi', 'GOAT', '2-11-1990', 'High');
+    obj.sike.push(listItemTwo);
+    DisplayTodoList();
+    removeTodo();
+    minimizeTodoDetails();
+    fillSignTodo();
+}
+
+function userInputTodo() {
+    const dateBtnIndianFormat = dateBtn.value.split('-').reverse().join('-');
+    console.log(dateBtnIndianFormat);
+    const listItem = new TodoClass(nameBtn.value, descriptionBtn.value, dateBtnIndianFormat, obj.currentStatus);
+    obj.sike.unshift(listItem);
+}
+
+function saveTodoBtn() {
+    saveBtn.addEventListener("click", () => {
+        userInputTodo()
+        DisplayTodoList();
+        minimizeTodoDetails();
+        removeTodo();
+        addTodoDiv.style.display = 'flex';
+        sectionFour.style.display = 'none';
+        fillSignTodo();
+    });
+}
+
+selectedStatus();
+predefinedTodo();
+saveTodoBtn();
+addTodo();
 
 
