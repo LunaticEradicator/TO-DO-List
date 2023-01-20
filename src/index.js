@@ -65,19 +65,10 @@ function minimizeTodoDetails() {
     todoMinimizeBtn.addEventListener("click", minimizeTodoDetailsFnc);
 }
 
-
-function fillSignTodoStyleFnc(e) {
-    console.log('click');
-    e.currentTarget.classList.toggle('signStyle');
-}
-
 function fillSignTodoFnc(e) {
     console.log('click');
     e.currentTarget.classList.toggle('onClickFillTodoSign');
-    const todoMainAll = document.querySelectorAll(`.todoMain`);
-    todoMainAll.forEach(items => {
-        items.addEventListener("click", fillSignTodoStyleFnc)
-    })
+    console.log(e.currentTarget.parentNode.parentElement.parentElement.classList.toggle('signStyle')); // selects main
 }
 
 function fillSignTodo() {
