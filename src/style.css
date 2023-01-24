@@ -6,7 +6,6 @@ h1 {
     margin: 0;
     color: rgb(124, 105, 209);
     font-size: 4rem;
-    text-align: center;
 }
 
 h2 {
@@ -19,25 +18,26 @@ h2 {
     border: 2px solid aquamarine;
 }
 
-.content {}
+.content {
+    border: 2px solid aquamarine;
+}
 
 .container {
     /* display: flex; */
-    display: grid;
-    grid-template-columns: 1fr 3fr;
+    /* flex-direction: column; */
+    /* grid-template-columns: 1fr 3fr; */
     gap: 20px;
 }
 
 .sectionOne {
-    border: 2px dashed red;
-    /* text-align: center;
-    width: 200px; */
-    padding: 0;
-    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .sectionTwo {
-    border: 2px dashed rgb(204, 0, 255);
+    border: 2px solid rgb(204, 0, 255);
+    border-radius: 10px;
     padding: 10px;
 }
 
@@ -49,13 +49,14 @@ h2 {
     gap: 5px;
 }
 
+
 .sectionFour {
     padding-top: 10px;
     padding-left: 10px;
     padding-right: 10px;
     font-size: 1.2rem;
     /* display: grid; */
-    display: none;
+    /* display: none; */
     gap: 5px;
 }
 
@@ -273,7 +274,8 @@ input[type=button]:hover {
 }
 
 .onClickSectionThreeShrink {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
 }
 
 .onClickTodoMainShrink {
