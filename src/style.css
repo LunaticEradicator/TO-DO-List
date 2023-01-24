@@ -1,6 +1,12 @@
 body {
     font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    /* position: fixed */
+}
+
+html,
+body {
+    min-width: 100%;
+    min-height: 100%;
+    margin: 0px;
 }
 
 h1 {
@@ -23,6 +29,7 @@ h2 {
 .content {
     display: flex;
     flex-direction: column;
+    /* overflow: hidden; */
 }
 
 .container {
@@ -30,7 +37,7 @@ h2 {
     /* grid-template-columns: 1fr 3fr; */
     display: flex;
     gap: 20px;
-    border: 5px solid rgb(10, 5, 5);
+    border: 5px dotted rgb(10, 5, 5);
     height: 100vh;
 }
 
@@ -41,6 +48,7 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100vh;
 }
 
 .sectionTwo {
@@ -116,14 +124,12 @@ input[type=button]:hover {
     text-align: center;
 }
 
-.statusDiv,
+
 .saveBtnDiv {
     display: flex;
+    flex: 1;
 }
 
-.statusDiv {
-    margin-right: 100px;
-}
 
 .saveBtn {
     background-color: rgb(42, 42, 43);
@@ -147,9 +153,11 @@ input[type=button]:hover {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     border-radius: 10px;
-    /* justify-items: center; */
+    padding: 0px;
     padding-left: 20px;
+    padding-right: 10px;
     align-items: center;
+    gap: 10px;
 }
 
 .hud {
@@ -228,17 +236,50 @@ input[type=button]:hover {
     background: url('../img/add.png') center/contain;
 }
 
+.todoIcon {
+    display: flex;
+    gap: 10px
+}
+
 .todoDeleteBtn {
     width: 30px;
     background: url('../img/delete.png') center/contain no-repeat;
     cursor: pointer;
 }
 
+.todoEditBtn {
+    all: unset;
+    width: 20px;
+    background: url('../img/edit.png') center/contain no-repeat;
+    cursor: pointer;
+}
+
+.imageSort {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.listIcon {
+    all: unset;
+    width: 30px;
+    background: url('../img/list.png') center/contain no-repeat;
+    cursor: pointer;
+}
+
+.gridIcon {
+    all: unset;
+    width: 30px;
+    background: url('../img/grid.png') center/contain no-repeat;
+    cursor: pointer;
+}
+
 .todoMinimizeBtn {
     background-color: black;
     border-radius: 10px;
-    color: snow;
+    color: white;
     cursor: pointer;
+    text-align: center;
 }
 
 .hud>div {
@@ -264,8 +305,9 @@ input[type=button]:hover {
 }
 
 .onClickTodoDate {
+    justify-content: end;
     display: flex;
-    align-self: end;
+    text-align: center;
 }
 
 .onClickSectionThreeShrink {
@@ -276,7 +318,7 @@ input[type=button]:hover {
     background-color: rgb(223, 189, 189);
     border-radius: 10px;
     padding: 10px;
-    width: 20%;
+    width: 220px;
 }
 
 .onClickTodoDetailsShrink {
