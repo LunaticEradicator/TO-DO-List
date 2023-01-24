@@ -1,11 +1,13 @@
 body {
     font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    /* position: fixed */
 }
 
 h1 {
     margin: 0;
     color: rgb(124, 105, 209);
     font-size: 4rem;
+    text-align: center;
 }
 
 h2 {
@@ -19,26 +21,34 @@ h2 {
 }
 
 .content {
-    border: 2px solid aquamarine;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
-    /* display: flex; */
-    /* flex-direction: column; */
+    /* display: grid; */
     /* grid-template-columns: 1fr 3fr; */
+    display: flex;
     gap: 20px;
+    border: 5px solid rgb(10, 5, 5);
+    height: 100vh;
 }
 
 .sectionOne {
+    border: 2px dashed red;
+    padding: 0;
+    margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .sectionTwo {
-    border: 2px solid rgb(204, 0, 255);
-    border-radius: 10px;
+    border: 2px dashed rgb(204, 0, 255);
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .sectionThree {
@@ -48,7 +58,6 @@ h2 {
     font-size: 1.2rem;
     gap: 5px;
 }
-
 
 .sectionFour {
     padding-top: 10px;
@@ -60,11 +69,17 @@ h2 {
     gap: 5px;
 }
 
+input[type="text"] {
+    font-weight: bold;
+}
+
 form {
     display: flex;
     flex-direction: column;
-    /* background-color: rgba(220, 233, 204, 0.404); */
-    background-color: rgba(220, 233, 204, 0.404);
+    border: 2px solid rgba(1, 56, 15, 0.486);
+    background-color: rgba(200, 212, 203, 0.486);
+    color: rgb(49, 182, 182);
+    color: white;
     margin: 0;
 }
 
@@ -121,36 +136,16 @@ input[type=button]:hover {
     padding: 6px;
 }
 
-.statusBtnHigh,
-.statusBtnLow,
-.statusBtnOff {
-    background-color: rgb(42, 42, 43);
-    color: aliceblue;
-    cursor: pointer;
-    display: flex;
-    flex-grow: 1;
-    justify-content: center;
-    margin-left: 5px;
-    margin-right: 5px;
+.statusBtn {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
     padding: 5px;
-    border: 1px solid rgb(161, 161, 161);
-}
-
-.statusBtnHigh {
-    background-color: red;
-}
-
-.statusBtnLow {
-    background-color: rgb(127, 168, 255);
-}
-
-.statusBtnOff {
-    background-color: grey;
 }
 
 .addItem {
     display: grid;
-    grid-template-columns: repeat(5, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     border-radius: 10px;
     /* justify-items: center; */
     padding-left: 20px;
@@ -163,7 +158,7 @@ input[type=button]:hover {
     font-weight: bold;
     font-size: 1.2rem;
     margin: 10px;
-    grid-template-columns: repeat(6, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     /* padding-left: 20px; */
     /* justify-items: center; */
 }
@@ -182,7 +177,7 @@ input[type=button]:hover {
 
 .todoDetails {
     display: grid;
-    grid-template-columns: repeat(6, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     border-radius: 10px;
     padding-left: 10px;
 }
@@ -274,8 +269,7 @@ input[type=button]:hover {
 }
 
 .onClickSectionThreeShrink {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 .onClickTodoMainShrink {

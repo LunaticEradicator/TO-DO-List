@@ -1,10 +1,10 @@
 import './style.css';
 import { addTodoBtn, addTodoDiv } from './dom';
-import { modal, saveBtn, descriptionBtn, dateBtn, statusBtnHigh, statusBtnLow, statusBtnOff, selectedStatusBtn } from './modalBar'
+import { modal, nameBtn, saveBtn, descriptionBtn, dateBtn, selectedStatusBtn, statusBtn } from './modalBar'
 import todoUICreate, { createNewSectionThree, sectionThree, sectionFour, todoMain, todoDetails, todoSign, todoName, todoDescription, todoStatus, todoDate, todoDeleteBtn, todoMinimizeBtn } from './eachTodoItem';
 
 
-const nameBtn = document.querySelector('.nameBtn');
+// const nameBtn = document.querySelector('.nameBtn');
 const obj = {
     sike: [],
     currentStatus: '',
@@ -24,6 +24,7 @@ function selectedStatus() {
         selected.addEventListener("click", () => {
             obj.currentStatus = selected.value;
             console.log(obj.currentStatus);
+            console.log();
         });
     });
 }
@@ -39,12 +40,11 @@ function addItemBtn() {
 // todoFunctionality !-
 
 function minimizeTodoDetailsFnc(e) {
-    // e.currentTarget.parentNode.parentElement.parentElement.classList.toggle(`onClickSectionThreeShrink`); // Selects todoMain
     e.currentTarget.parentNode.parentElement.classList.toggle(`onClickTodoMainShrink`); // Selects todoMain
     e.currentTarget.parentElement.classList.toggle('onClickTodoDetailsShrink'); // Selects todoDetails
     e.currentTarget.parentNode.childNodes[1].classList.toggle('onClickHideToDoDetails'); // Selects todoDescription
-    e.currentTarget.parentNode.childNodes[2].classList.toggle('onClickHideToDoDetails'); // Selects todoStatus
-    e.currentTarget.parentNode.childNodes[3].classList.toggle('onClickTodoDate'); // Selects todoDate
+    e.currentTarget.parentNode.childNodes[2].classList.toggle('onClickTodoDate'); // Selects todoDate
+    e.currentTarget.parentNode.childNodes[3].classList.toggle('onClickHideToDoDetails'); // Selects todoStatus
 
     if (e.currentTarget.parentNode.parentElement.classList.contains(`onClickTodoMainShrink`)) {
         e.currentTarget.parentNode.childNodes[5].textContent = 'Maximize';
@@ -100,7 +100,7 @@ function predefinedTodoInput() {
 
 function userCreateTodoInput() {
     const dateBtnIndianFormat = dateBtn.value.split('-').reverse().join('-');
-    const listItem = new TodoClass(nameBtn.value, descriptionBtn.value, dateBtnIndianFormat, obj.currentStatus);
+    const listItem = new TodoClass(nameBtn.value, descriptionBtn.value, dateBtnIndianFormat, statusBtn.value);
     obj.sike.unshift(listItem);
     todoSectionCreate();
 }
