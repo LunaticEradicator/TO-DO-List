@@ -19,106 +19,106 @@ class TodoClass {
     }
 }
 
-// function selectedStatus() {
-//     selectedStatusBtn.forEach(selected => {
-//         selected.addEventListener("click", () => {
-//             obj.currentStatus = selected.value;
-//             console.log(obj.currentStatus);
-//             console.log();
-//         });
-//     });
-// }
+let isTodoListOrGridStyle;
 
-listIcon.addEventListener('click', e => {
-    const todoMainAll = document.querySelectorAll('.todoMain');
-    const todoDetailsAll = document.querySelectorAll('.todoDetails');
-    const todoDescriptionAll = document.querySelectorAll('.todoDescription');
-    const todoStatusAll = document.querySelectorAll('.todoStatus');
-    const todoDateAll = document.querySelectorAll('.todoDate');
-    const todoDeleteBtnAll = document.querySelectorAll('.todoDeleteBtn');
-    const todoEditBtnAll = document.querySelectorAll('.todoEditBtn');
+function sortTodoListOrGridStyle() { // Check for EventListener and create sorting order [grid or list]
+    listIcon.addEventListener('click', e => {
+        isTodoListOrGridStyle = false;
+        const todoMainAll = document.querySelectorAll('.todoMain');
+        const todoDetailsAll = document.querySelectorAll('.todoDetails');
+        const todoDescriptionAll = document.querySelectorAll('.todoDescription');
+        const todoStatusAll = document.querySelectorAll('.todoStatus');
+        const todoDateAll = document.querySelectorAll('.todoDate');
+        const todoDeleteBtnAll = document.querySelectorAll('.todoDeleteBtn');
+        const todoEditBtnAll = document.querySelectorAll('.todoEditBtn');
 
-    todoMainAll.forEach(items => {
-        items.classList.remove('onClickTodoMainShrink');
-        if (!items.classList.contains(`onClickTodoMainShrink`)) {
-            const todoMinimizeBtnAll = document.querySelectorAll('.todoMinimizeBtn');
-            todoMinimizeBtnAll.forEach(btns => {
-                btns.textContent = 'Minimize';
-            })
-        }
-        // else {
-        //     const todoMinimizeBtnAll = document.querySelectorAll('.todoMinimizeBtn');
-        //     todoMinimizeBtnAll.forEach(btns => {
-        //         btns.textContent = 'Maximize';
-        //     })
-        // }
+        todoMainAll.forEach(items => {
+            items.classList.remove('onClickTodoMainShrink');
+            if (!items.classList.contains(`onClickTodoMainShrink`)) {
+                const todoMinimizeBtnAll = document.querySelectorAll('.todoMinimizeBtn');
+                todoMinimizeBtnAll.forEach(btns => {
+                    btns.textContent = 'Minimize';
+                })
+            }
+        })
+        todoDetailsAll.forEach(items => {
+            items.classList.remove('onClickTodoDetailsShrink');
+        })
+        todoDescriptionAll.forEach(items => {
+            items.classList.remove('onClickHideToDoDetails');
+        })
+        todoStatusAll.forEach(items => {
+            items.classList.remove('onClickHideToDoDetails');
+        })
+        todoDateAll.forEach(items => {
+            items.classList.remove('onClickTodoDate');
+        })
+        todoDeleteBtnAll.forEach(items => {
+            items.classList.remove('onClickHideToDoDetails');
+        })
+        todoEditBtnAll.forEach(items => {
+            items.classList.remove('onClickHideToDoDetails');
+        })
     })
-    todoDetailsAll.forEach(items => {
-        items.classList.remove('onClickTodoDetailsShrink');
-    })
-    todoDescriptionAll.forEach(items => {
-        items.classList.remove('onClickHideToDoDetails');
-    })
-    todoStatusAll.forEach(items => {
-        items.classList.remove('onClickHideToDoDetails');
-    })
-    todoDateAll.forEach(items => {
-        items.classList.remove('onClickTodoDate');
-    })
-    todoDeleteBtnAll.forEach(items => {
-        items.classList.remove('onClickHideToDoDetails');
-    })
-    todoEditBtnAll.forEach(items => {
-        items.classList.remove('onClickHideToDoDetails');
-    })
-})
-
-gridIcon.addEventListener('click', e => {
-    const todoMainAll = document.querySelectorAll('.todoMain');
-    const todoDetailsAll = document.querySelectorAll('.todoDetails');
-    const todoDescriptionAll = document.querySelectorAll('.todoDescription');
-    const todoStatusAll = document.querySelectorAll('.todoStatus');
-    const todoDateAll = document.querySelectorAll('.todoDate');
-    const todoDeleteBtnAll = document.querySelectorAll('.todoDeleteBtn');
-    const todoEditBtnAll = document.querySelectorAll('.todoEditBtn');
 
 
-    todoMainAll.forEach(items => {
-        items.classList.add('onClickTodoMainShrink');
-        if (items.classList.contains(`onClickTodoMainShrink`)) {
-            const todoMinimizeBtnAll = document.querySelectorAll('.todoMinimizeBtn');
-            todoMinimizeBtnAll.forEach(btns => {
-                // alert('contains')
-                btns.textContent = 'Maximize';
-            })
-        }
-        // else {
-        //     const todoMinimizeBtnAll = document.querySelectorAll('.todoMinimizeBtn');
-        //     todoMinimizeBtnAll.forEach(btns => {
-        //         btns.textContent = 'Minimize';
-        //     })
-        // }
-    })
-    todoDetailsAll.forEach(items => {
-        items.classList.add('onClickTodoDetailsShrink');
-    })
-    todoDescriptionAll.forEach(items => {
-        items.classList.add('onClickHideToDoDetails');
-    })
-    todoStatusAll.forEach(items => {
-        items.classList.add('onClickHideToDoDetails');
-    })
-    todoDateAll.forEach(items => {
-        items.classList.add('onClickTodoDate');
-    })
-    todoDeleteBtnAll.forEach(items => {
-        items.classList.add('onClickHideToDoDetails');
-    })
-    todoEditBtnAll.forEach(items => {
-        items.classList.add('onClickHideToDoDetails');
-    })
-})
+    gridIcon.addEventListener('click', e => {
+        isTodoListOrGridStyle = true;
 
+        const todoMainAll = document.querySelectorAll('.todoMain');
+        const todoDetailsAll = document.querySelectorAll('.todoDetails');
+        const todoDescriptionAll = document.querySelectorAll('.todoDescription');
+        const todoStatusAll = document.querySelectorAll('.todoStatus');
+        const todoDateAll = document.querySelectorAll('.todoDate');
+        const todoDeleteBtnAll = document.querySelectorAll('.todoDeleteBtn');
+        const todoEditBtnAll = document.querySelectorAll('.todoEditBtn');
+
+
+
+        todoMainAll.forEach(items => {
+            items.classList.add('onClickTodoMainShrink');
+            if (items.classList.contains(`onClickTodoMainShrink`)) {
+                const todoMinimizeBtnAll = document.querySelectorAll('.todoMinimizeBtn');
+                todoMinimizeBtnAll.forEach(btns => {
+                    // alert('contains')
+                    btns.textContent = 'Maximize';
+                })
+            }
+        })
+        todoDetailsAll.forEach(items => {
+            items.classList.add('onClickTodoDetailsShrink');
+        })
+        todoDescriptionAll.forEach(items => {
+            items.classList.add('onClickHideToDoDetails');
+        })
+        todoStatusAll.forEach(items => {
+            items.classList.add('onClickHideToDoDetails');
+        })
+        todoDateAll.forEach(items => {
+            items.classList.add('onClickTodoDate');
+        })
+        todoDeleteBtnAll.forEach(items => {
+            items.classList.add('onClickHideToDoDetails');
+        })
+        todoEditBtnAll.forEach(items => {
+            items.classList.add('onClickHideToDoDetails');
+
+        })
+    })
+}
+
+function clickTodoListOrGridStyle() {  // check if the user was clicked the sorting order [grid or list] and create the new Todo with the same style format 
+    if (isTodoListOrGridStyle === true) {
+        todoMinimizeBtn.textContent = 'Maximize'
+        todoMain.classList.add('onClickTodoMainShrink');
+        todoDetails.classList.add('onClickTodoDetailsShrink');
+        todoDescription.classList.add('onClickHideToDoDetails');
+        todoStatus.classList.add('onClickHideToDoDetails');
+        todoDate.classList.add('onClickTodoDate');
+        todoDeleteBtn.classList.add('onClickHideToDoDetails');
+        todoEditBtn.classList.add('onClickHideToDoDetails');
+    }
+}
 
 function addItemBtn() {
     addTodoBtn.addEventListener("click", () => {
@@ -177,7 +177,7 @@ function removeTodo() {
 
 // todoFunctionality -!
 function todoSectionCreate() {
-    todoUICreate(); // // from eachTodoItem.js
+    todoUICreate();  // from eachTodoItem.js
     todoName.textContent = `${obj.sike[0].title}`;
     todoDescription.textContent = `${obj.sike[0].description}`;
     todoDate.textContent = `${obj.sike[0].date}`;
@@ -186,13 +186,12 @@ function todoSectionCreate() {
 
 function predefinedTodoInput() {
     const listItemTwo = new TodoClass('Messi', 'GOAT', '2-11-1990', 'High');
-    // todoUICreate(); // from eachTodoItem.js
     obj.sike.push(listItemTwo);
     todoSectionCreate();
     // todo Functionality !-
-    removeTodo();
     minimizeTodoDetails();
     fillSignTodo();
+    removeTodo();
 }
 
 function userCreateTodoInput() {
@@ -202,21 +201,21 @@ function userCreateTodoInput() {
     todoSectionCreate();
 }
 
+
 function saveTodo() {
     saveBtn.addEventListener("click", () => {
         addTodoDiv.style.display = 'flex';
         sectionFour.style.display = 'none';
-        // todo functionality !-
         userCreateTodoInput();
         minimizeTodoDetails();
-        removeTodo();
         fillSignTodo();
-        // console.log(obj.sike);
+        removeTodo();
+        clickTodoListOrGridStyle()
     });
 }
+
 predefinedTodoInput();
 addItemBtn();
 saveTodo();
-
-
+sortTodoListOrGridStyle();
 

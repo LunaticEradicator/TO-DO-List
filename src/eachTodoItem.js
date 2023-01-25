@@ -11,8 +11,11 @@ let todoDeleteBtn;
 let todoMinimizeBtn;
 let todoEditBtn;
 const hud = document.querySelector('.hud');
+const addTodoDiv = document.querySelector('.addTodoDiv');
+const sectionTwo = document.querySelector('.sectionTwo');
 const sectionThree = document.createElement('div');
 const sectionFour = document.querySelector('.sectionFour');
+const sike = document.querySelector('.sike');
 
 
 function createNewSectionThree() {
@@ -88,7 +91,9 @@ export default function todoUICreate() {
     todoIcon.append(todoDeleteBtn, todoEditBtn, todoMinimizeBtn);
     todoMain.append(todoDetails);
     sectionThree.append(todoMain);
-    hud.after(sectionThree);
+    sectionThree.append(addTodoDiv);
+    sectionThree.append(sectionFour);
+    sike.append(sectionThree);
 }
 // todoMain = document.createElement('div');
 

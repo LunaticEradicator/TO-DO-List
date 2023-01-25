@@ -20,63 +20,6 @@ h2 {
     margin: 0;
 }
 
-.modal {
-    background-color: rgb(29, 29, 29);
-    border-radius: 10px;
-    border: 2px solid aquamarine;
-}
-
-.content {
-    display: flex;
-    flex-direction: column;
-    /* overflow: hidden; */
-}
-
-.container {
-    /* display: grid; */
-    /* grid-template-columns: 1fr 3fr; */
-    display: flex;
-    gap: 20px;
-    border: 5px dotted rgb(10, 5, 5);
-    height: 100vh;
-}
-
-.sectionOne {
-    border: 2px dashed red;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-
-.sectionTwo {
-    border: 2px dashed rgb(204, 0, 255);
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.sectionThree {
-    padding-left: 10px;
-    padding-right: 10px;
-    display: grid;
-    font-size: 1.2rem;
-    gap: 5px;
-}
-
-.sectionFour {
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 1.2rem;
-    /* display: grid; */
-    /* display: none; */
-    gap: 5px;
-}
-
 input[type="text"] {
     font-weight: bold;
 }
@@ -120,6 +63,60 @@ input[type=button]:hover {
     transform: scale(0.8);
 }
 
+.modal {
+    background-color: rgb(29, 29, 29);
+    border-radius: 10px;
+    border: 2px solid aquamarine;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    /* overflow: hidden; */
+}
+
+.container {
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 20px;
+    border: 5px dotted rgb(10, 5, 5);
+}
+
+.sectionOne {
+    border: 2px dashed red;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sectionTwo {
+    border: 2px dashed rgb(204, 0, 255);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.sectionThree {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: grid;
+    font-size: 1.2rem;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    /* border: 2px solid rgb(0, 0, 0); */
+}
+
+.sectionFour {
+    font-size: 1.2rem;
+    gap: 5px;
+}
+
+
 .dateDiv {
     text-align: center;
 }
@@ -154,28 +151,34 @@ input[type=button]:hover {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     border-radius: 10px;
     padding: 0px;
-    padding-left: 20px;
-    padding-right: 10px;
+    padding-left: 10px;
     align-items: center;
-    gap: 10px;
+    gap: 5x;
 }
 
 .hud {
-    display: grid;
+    display: flex;
+    justify-content: end;
+    gap: 5px;
     border-radius: 10px;
     font-weight: bold;
     font-size: 1.2rem;
     margin: 10px;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    /* padding-left: 20px; */
-    /* justify-items: center; */
+    /* background-color: rgb(219, 219, 219); */
+}
+
+.sike {
+    /* height: 100vh; */
+    border: 2px solid;
+    border-radius: 10px;
 }
 
 .todoMain {
-    display: grid;
+    /* display: grid;
     grid-auto-flow: column;
     grid-template-columns: 1fr;
-    align-items: center;
+    align-items: center; */
     border-radius: 10px;
     padding-top: 3px;
     padding-bottom: 3px;
@@ -206,7 +209,7 @@ input[type=button]:hover {
     border-radius: 10px;
     padding-left: 5px;
     gap: 10px;
-    margin: 10px;
+    /* margin-top: 5px; */
     cursor: pointer;
 }
 
@@ -263,14 +266,16 @@ input[type=button]:hover {
 .listIcon {
     all: unset;
     width: 30px;
-    background: url('../img/list.png') center/contain no-repeat;
+    height: 30px;
+    background: url('../img/list.svg') center/contain no-repeat;
     cursor: pointer;
 }
 
 .gridIcon {
     all: unset;
     width: 30px;
-    background: url('../img/grid.png') center/contain no-repeat;
+    height: 30px;
+    background: url('../img/grid.svg') center/contain no-repeat;
     cursor: pointer;
 }
 
@@ -318,7 +323,7 @@ input[type=button]:hover {
     background-color: rgb(223, 189, 189);
     border-radius: 10px;
     padding: 10px;
-    width: 220px;
+    width: 175px;
 }
 
 .onClickTodoDetailsShrink {
