@@ -1,3 +1,5 @@
+import { addTodoDiv, sectionFour } from "./htmlElement"
+
 let todoMain;
 let todoDetails;
 let todoNameDiv;
@@ -10,52 +12,11 @@ let todoIcon;
 let todoDeleteBtn;
 let todoMinimizeBtn;
 let todoEditBtn;
-const hud = document.querySelector('.hud');
-const addTodoDiv = document.querySelector('.addTodoDiv');
-const sectionTwo = document.querySelector('.sectionTwo');
+
 const sectionThree = document.createElement('div');
-const sectionFour = document.querySelector('.sectionFour');
-const sike = document.querySelector('.sike');
-const nameBtnEdit = document.querySelector('.nameBtnEdit');
-const descriptionBtnEdit = document.querySelector('.descriptionBtnEdit');
-const dateBtnEdit = document.querySelector('.dateBtnEdit');
-const statusBtnEdit = document.querySelector('.statusBtnEdit');
-const editDiv = document.querySelector('.editDiv');
+const arrangeStyle = document.querySelector('.arrangeStyle');
+const editTodo = document.querySelector('.editTodo');
 
-
-function createNewSectionThree() {
-    todoMinimizeBtn = document.createElement('button');
-    todoMain = document.createElement('div');
-    todoDetails = document.createElement('div');
-    todoNameDiv = document.createElement('div');
-    todoSign = document.createElement('div');
-    todoName = document.createElement('div');
-    todoDescription = document.createElement('div');
-    todoStatus = document.createElement('div');
-    todoDate = document.createElement('div');
-    todoDeleteBtn = document.createElement('div');
-
-
-    todoMinimizeBtn.classList.add('todoMinimizeBtn');
-    todoMinimizeBtn.textContent = 'Minimize';
-    sectionThree.classList.add('sectionThree');
-    todoMain.classList.add('todoMain');
-    todoDetails.classList.add('todoDetails');
-    todoNameDiv.classList.add('todoNameDiv');
-    todoSign.classList.add('todoSign');
-    todoName.classList.add('todoName');
-    todoDescription.classList.add('todoDescription');
-    todoStatus.classList.add('todoStatus');
-    todoDate.classList.add('todoDate');
-    todoDeleteBtn.classList.add('todoDeleteBtn');
-
-    todoDeleteBtn.textContent = '';
-    todoDetails.append(todoSign, todoNameDiv, todoDescription, todoStatus, todoDate, todoDeleteBtn, todoMinimizeBtn);
-    todoNameDiv.append(todoSign, todoName);
-    todoMain.append(todoDetails);
-    sectionThree.append(todoMain);
-    hud.after(sectionThree);
-}
 
 export default function todoUICreate() {
     todoMain = document.createElement('div');
@@ -70,8 +31,6 @@ export default function todoUICreate() {
     todoDeleteBtn = document.createElement('div');
     todoMinimizeBtn = document.createElement('button');
     todoEditBtn = document.createElement('button');
-
-
 
 
     sectionThree.classList.add('sectionThree');
@@ -95,20 +54,16 @@ export default function todoUICreate() {
     todoNameDiv.append(todoSign, todoName);
     todoIcon.append(todoDeleteBtn, todoEditBtn, todoMinimizeBtn);
     todoMain.append(todoDetails);
-    sike.append(sectionThree);
+    arrangeStyle.append(sectionThree);
     sectionThree.prepend(sectionFour);
     sectionThree.prepend(addTodoDiv);
-    sectionThree.prepend(editDiv)
+    sectionThree.prepend(editTodo)
     sectionThree.append(todoMain);
 }
-// todoMain = document.createElement('div');
-
-
-
-
 export {
-    createNewSectionThree, sectionThree, sectionFour,
-    todoMain, todoDetails, todoSign, todoName, todoDescription,
-    todoStatus, todoDate, todoDeleteBtn, todoMinimizeBtn, todoIcon, todoEditBtn,
-    editDiv, nameBtnEdit, descriptionBtnEdit, dateBtnEdit, statusBtnEdit
+    sectionFour,
+    todoMain, todoDetails,
+    todoSign, todoName, todoDescription, todoStatus, todoDate,
+    todoDeleteBtn, todoMinimizeBtn, todoIcon, todoEditBtn,
+    editTodo
 };

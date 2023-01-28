@@ -1,14 +1,16 @@
 import './style.css';
-import { addTodoBtn, addTodoDiv, gridIcon, listIcon } from './dom';
-import { modal, nameBtn, saveBtn, descriptionBtn, dateBtn, selectedStatusBtn, statusBtn } from './modalBar'
+import {
+    addTodoBtn, addTodoDiv, gridIcon, listIcon,
+    nameBtnEdit, descriptionBtnEdit, statusBtnEdit, dateBtnEdit,
+    sectionFour
+} from './htmlElement';
+import { nameBtn, saveBtn, descriptionBtn, dateBtn, statusBtn } from './addItem';
 import todoUICreate, {
-    createNewSectionThree, sectionThree, sectionFour, todoMain, todoDetails, todoSign, todoName, todoDescription,
+    todoMain, todoDetails, todoSign, todoName, todoDescription,
     todoStatus, todoDate, todoDeleteBtn, todoMinimizeBtn, todoEditBtn,
-    editDiv, nameBtnEdit, descriptionBtnEdit, dateBtnEdit, statusBtnEdit
+    editTodo
 } from './eachTodoItem';
 
-
-// const nameBtn = document.querySelector('.nameBtn');
 const obj = {
     sike: [],
     currentStatus: '',
@@ -22,8 +24,6 @@ class TodoClass {
         this.status = status;
     }
 }
-
-
 
 function addItemBtn() {
     addTodoBtn.addEventListener("click", () => {
@@ -142,8 +142,8 @@ function minimizeTodoDetailsFnc(e) {
     e.currentTarget.parentElement.parentElement.classList.toggle('onClickTodoDetailsShrink'); // Selects todoDetails
 
     e.currentTarget.parentNode.parentElement.childNodes[1].classList.toggle('onClickHideToDoDetails'); // Selects todoDescription
-    e.currentTarget.parentNode.parentElement.childNodes[2].classList.toggle('onClickHideToDoDetails'); // Selects todoStatus
-    e.currentTarget.parentNode.parentElement.childNodes[3].classList.toggle('onClickTodoDate'); // Selects todoDate
+    e.currentTarget.parentNode.parentElement.childNodes[2].classList.toggle('onClickTodoDate'); // Selects todoDate
+    e.currentTarget.parentNode.parentElement.childNodes[3].classList.toggle('onClickHideToDoDetails'); // Selects todoStatus
 
 
     e.currentTarget.parentNode.childNodes[0].classList.toggle('onClickHideToDoDetails'); // Selects deleteBtn
@@ -192,8 +192,8 @@ function edit() {
     todoEdit.forEach(items => {
         items.addEventListener("click", e => {
             e.currentTarget.parentNode.parentElement.style.display = 'none';  // selects details with respect to editBtn
-            editDiv.style.display = 'grid';
-            e.currentTarget.parentNode.parentElement.parentElement.append(editDiv);
+            editTodo.style.display = 'grid';
+            e.currentTarget.parentNode.parentElement.parentElement.append(editTodo);
 
 
             // document.onkeydown = function (evt) {
@@ -210,7 +210,7 @@ function edit() {
             editButton.addEventListener('click', event => {
                 const dateBtnIndianFormat = dateBtnEdit.value.split('-').reverse().join('-');
                 addTodoDiv.style.display = 'flex';
-                editDiv.style.display = 'none';
+                editTodo.style.display = 'none';
                 event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].style.display = 'grid';  // selects details
                 event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[0].childNodes[1].textContent = `${nameBtnEdit.value}`;
                 event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[1].textContent = `${descriptionBtnEdit.value}`;
