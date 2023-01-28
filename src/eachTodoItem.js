@@ -16,6 +16,11 @@ const sectionTwo = document.querySelector('.sectionTwo');
 const sectionThree = document.createElement('div');
 const sectionFour = document.querySelector('.sectionFour');
 const sike = document.querySelector('.sike');
+const nameBtnEdit = document.querySelector('.nameBtnEdit');
+const descriptionBtnEdit = document.querySelector('.descriptionBtnEdit');
+const dateBtnEdit = document.querySelector('.dateBtnEdit');
+const statusBtnEdit = document.querySelector('.statusBtnEdit');
+const editDiv = document.querySelector('.editDiv');
 
 
 function createNewSectionThree() {
@@ -86,14 +91,15 @@ export default function todoUICreate() {
     // todoEditBtn.textContent = 'Edit';
 
     todoDeleteBtn.textContent = '';
-    todoDetails.append(todoSign, todoNameDiv, todoDescription, todoStatus, todoDate, todoIcon);
+    todoDetails.append(todoSign, todoNameDiv, todoDescription, todoDate, todoStatus, todoIcon);
     todoNameDiv.append(todoSign, todoName);
     todoIcon.append(todoDeleteBtn, todoEditBtn, todoMinimizeBtn);
     todoMain.append(todoDetails);
-    sectionThree.append(todoMain);
-    sectionThree.append(addTodoDiv);
-    sectionThree.append(sectionFour);
     sike.append(sectionThree);
+    sectionThree.prepend(sectionFour);
+    sectionThree.prepend(addTodoDiv);
+    sectionThree.prepend(editDiv)
+    sectionThree.append(todoMain);
 }
 // todoMain = document.createElement('div');
 
@@ -101,5 +107,8 @@ export default function todoUICreate() {
 
 
 export {
-    createNewSectionThree, sectionThree, sectionFour, todoMain, todoDetails, todoSign, todoName, todoDescription, todoStatus, todoDate, todoDeleteBtn, todoMinimizeBtn, todoIcon, todoEditBtn
+    createNewSectionThree, sectionThree, sectionFour,
+    todoMain, todoDetails, todoSign, todoName, todoDescription,
+    todoStatus, todoDate, todoDeleteBtn, todoMinimizeBtn, todoIcon, todoEditBtn,
+    editDiv, nameBtnEdit, descriptionBtnEdit, dateBtnEdit, statusBtnEdit
 };

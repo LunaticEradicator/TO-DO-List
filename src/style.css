@@ -12,7 +12,7 @@ body {
 h1 {
     margin: 0;
     color: rgb(124, 105, 209);
-    font-size: 4rem;
+    font-size: 3rem;
     text-align: center;
 }
 
@@ -116,6 +116,7 @@ input[type=button]:hover {
 .sectionFour {
     font-size: 1.2rem;
     gap: 5px;
+    /* display: none; */
 }
 
 
@@ -130,7 +131,8 @@ input[type=button]:hover {
 }
 
 
-.saveBtn {
+.saveBtn,
+.saveBtnEdit {
     background-color: rgb(42, 42, 43);
     color: aliceblue;
     cursor: pointer;
@@ -141,7 +143,8 @@ input[type=button]:hover {
     padding: 6px;
 }
 
-.statusBtn {
+.statusBtn,
+.statusBtnEdit {
     background-color: black;
     color: white;
     border-radius: 10px;
@@ -341,4 +344,8 @@ input[type=button]:hover {
 .signStyle {
     background-color: rgba(0, 0, 0, 0.404);
     opacity: 0.2;
+}
+
+.editDiv {
+    display: none;
 }

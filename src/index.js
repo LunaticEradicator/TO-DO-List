@@ -1,7 +1,11 @@
 import './style.css';
 import { addTodoBtn, addTodoDiv, gridIcon, listIcon } from './dom';
 import { modal, nameBtn, saveBtn, descriptionBtn, dateBtn, selectedStatusBtn, statusBtn } from './modalBar'
-import todoUICreate, { createNewSectionThree, sectionThree, sectionFour, todoMain, todoDetails, todoSign, todoName, todoDescription, todoStatus, todoDate, todoDeleteBtn, todoMinimizeBtn, todoEditBtn, todoIcon } from './eachTodoItem';
+import todoUICreate, {
+    createNewSectionThree, sectionThree, sectionFour, todoMain, todoDetails, todoSign, todoName, todoDescription,
+    todoStatus, todoDate, todoDeleteBtn, todoMinimizeBtn, todoEditBtn,
+    editDiv, nameBtnEdit, descriptionBtnEdit, dateBtnEdit, statusBtnEdit
+} from './eachTodoItem';
 
 
 // const nameBtn = document.querySelector('.nameBtn');
@@ -18,6 +22,19 @@ class TodoClass {
         this.status = status;
     }
 }
+
+
+
+function addItemBtn() {
+    addTodoBtn.addEventListener("click", () => {
+        addTodoDiv.style.display = 'none';
+        sectionFour.style.display = 'grid';
+        // selectedStatus();
+    });
+}
+
+// todoFunctionality !-
+
 
 let isTodoListOrGridStyle;
 
@@ -120,16 +137,6 @@ function clickTodoListOrGridStyle() {  // check if the user was clicked the sort
     }
 }
 
-function addItemBtn() {
-    addTodoBtn.addEventListener("click", () => {
-        addTodoDiv.style.display = 'none';
-        sectionFour.style.display = 'grid';
-        // selectedStatus();
-    });
-}
-
-// todoFunctionality !-
-
 function minimizeTodoDetailsFnc(e) {
     e.currentTarget.parentNode.parentElement.parentElement.classList.toggle(`onClickTodoMainShrink`); // Selects todoMain
     e.currentTarget.parentElement.parentElement.classList.toggle('onClickTodoDetailsShrink'); // Selects todoDetails
@@ -176,6 +183,45 @@ function removeTodo() {
 }
 
 // todoFunctionality -!
+// const todoMainAll = document.querySelectorAll('.todoMain');
+// todoMainAll.forEach(all => {
+//     console.log(all)
+// })
+function edit() {
+    const todoEdit = document.querySelectorAll('.todoEditBtn');
+    todoEdit.forEach(items => {
+        items.addEventListener("click", e => {
+            e.currentTarget.parentNode.parentElement.style.display = 'none';  // selects details with respect to editBtn
+            editDiv.style.display = 'grid';
+            e.currentTarget.parentNode.parentElement.parentElement.append(editDiv);
+
+
+            // document.onkeydown = function (evt) {
+            //     evt = evt || window.event;
+            //     if (evt.key === 'Escape') {
+            //         editDiv.remove();
+            //         console.log(evt.currentTarget)
+            //         // e.currentTarget.parentNode.parentElement.style.display = 'grid';  // selects details with respect to editBtn
+
+            //     }
+            // };
+
+            const editButton = e.currentTarget.parentNode.parentElement.parentElement.childNodes[1].childNodes[1].childNodes[9].childNodes[1]
+            editButton.addEventListener('click', event => {
+                const dateBtnIndianFormat = dateBtnEdit.value.split('-').reverse().join('-');
+                addTodoDiv.style.display = 'flex';
+                editDiv.style.display = 'none';
+                event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].style.display = 'grid';  // selects details
+                event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[0].childNodes[1].textContent = `${nameBtnEdit.value}`;
+                event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[1].textContent = `${descriptionBtnEdit.value}`;
+                event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[2].textContent = `${dateBtnIndianFormat}`;
+                event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[3].textContent = `${statusBtnEdit.value}`;
+                console.log(event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[3]);
+            })
+        })
+    })
+}
+
 function todoSectionCreate() {
     todoUICreate();  // from eachTodoItem.js
     todoName.textContent = `${obj.sike[0].title}`;
@@ -192,6 +238,7 @@ function predefinedTodoInput() {
     minimizeTodoDetails();
     fillSignTodo();
     removeTodo();
+    edit();
 }
 
 function userCreateTodoInput() {
@@ -201,7 +248,6 @@ function userCreateTodoInput() {
     todoSectionCreate();
 }
 
-
 function saveTodo() {
     saveBtn.addEventListener("click", () => {
         addTodoDiv.style.display = 'flex';
@@ -210,7 +256,8 @@ function saveTodo() {
         minimizeTodoDetails();
         fillSignTodo();
         removeTodo();
-        clickTodoListOrGridStyle()
+        clickTodoListOrGridStyle();
+        edit();
     });
 }
 
@@ -218,4 +265,6 @@ predefinedTodoInput();
 addItemBtn();
 saveTodo();
 sortTodoListOrGridStyle();
+
+
 
