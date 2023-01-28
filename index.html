@@ -9,10 +9,9 @@
     <script src="./main.js" defer></script>
 </head>
 <div class="content">
-    <h1>To-Do</h1>
     <div class="container">
         <div class="sectionOne">
-            <h1>Create</h1>
+            <h1>To-Do</h1>
         </div>
         <div class="sectionTwo">
             <div class="hud">
@@ -25,10 +24,10 @@
                 <div class="addTodoOnOff"></div>
                 <button class="addTodoBtn">Add item</button>
             </div>
-            <div class="sectionFour">
+            <div class="addTodoConfirmation">
                 <form class="addItem">
                     <div class="nameDiv">
-                        <input type="text" name="nameBtn" class="nameBtn" placeholder="Name" value="cr7">
+                        <input type="text" name="nameBtn" class="nameBtn" placeholder="Name" value="cr7" autofocus>
                     </div>
                     <div class="descriptionDiv">
                         <input type="text" name="descriptionBtn" class="descriptionBtn" placeholder="Description"
@@ -46,14 +45,14 @@
                     </div>
                     <div class="saveBtnDiv">
                         <input type="button" name="saveBtn" class="saveBtn" value="Save">
-                        <!-- <input type="button" name="cancelBtn" class="cancelBtn" value="Cancel"> -->
+                        <input type="button" name="cancelBtn" class="cancelBtn" value="Cancel">
                     </div>
                 </form>
             </div>
             <div class="editTodo">
                 <form class="addItem">
                     <div class="nameDiv">
-                        <input type="text" name="nameBtn" class="nameBtnEdit" placeholder="Name" value="cr7">
+                        <input type="text" name="nameBtn" class="nameBtnEdit" placeholder="Name" autofocus>
                     </div>
                     <div class="descriptionDiv">
                         <input type="text" name="descriptionBtn" class="descriptionBtnEdit" placeholder="Description"
@@ -71,7 +70,7 @@
                     </div>
                     <div class="saveBtnDiv">
                         <input type="button" name="saveBtn" class="saveBtnEdit" value="Save">
-                        <!-- <input type="button" name="cancelBtn" class="cancelBtnEdit" value="Save"> -->
+                        <input type="button" name="cancelBtn" class="cancelBtnEdit" value="Cancel">
                     </div>
                 </form>
             </div>
