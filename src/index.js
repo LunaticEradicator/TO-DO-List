@@ -2,7 +2,7 @@ import './style.css';
 import {
     addTodoBtn, addTodoDiv, gridIcon, listIcon,
     nameBtnEdit, descriptionBtnEdit, statusBtnEdit, dateBtnEdit,
-    sectionFour
+    addTodoConfirmation, cancelBtn, cancelBtnEdit
 } from './htmlElement';
 import { nameBtn, saveBtn, descriptionBtn, dateBtn, statusBtn } from './addItem';
 import todoUICreate, {
@@ -25,11 +25,19 @@ class TodoClass {
     }
 }
 
+function todoAddCancel() {
+    cancelBtn.addEventListener("click", e => {
+        addTodoConfirmation.style.display = 'none';
+        addTodoDiv.style.display = 'flex';
+    })
+}
+
 function addItemBtn() {
     addTodoBtn.addEventListener("click", () => {
         addTodoDiv.style.display = 'none';
-        sectionFour.style.display = 'grid';
-        // selectedStatus();
+        addTodoConfirmation.style.display = 'grid';
+        nameBtn.focus(); // adds cursor when addBtn is pressed;
+        todoAddCancel()
     });
 }
 
@@ -182,43 +190,58 @@ function removeTodo() {
     });
 }
 
-// todoFunctionality -!
-// const todoMainAll = document.querySelectorAll('.todoMain');
-// todoMainAll.forEach(all => {
-//     console.log(all)
-// })
-function edit() {
-    const todoEdit = document.querySelectorAll('.todoEditBtn');
-    todoEdit.forEach(items => {
+function enableEditBtn() {
+    // Enable all the edit button until the clearBtnEdit is pressed [For cancel edit log above]
+    const todoEditBtnAll = document.querySelectorAll('.todoEditBtn');
+    todoEditBtnAll.forEach(isTodoEditClicked => {
+        isTodoEditClicked.disabled = false; // disable todoEditBtn 
+    })
+}
+
+function todoEditCancel() {
+    cancelBtnEdit.addEventListener("click", e => {
+        editTodo.style.display = 'none';
+        const todoDetailsAll = document.querySelectorAll('.todoDetails');
+        todoDetailsAll.forEach(items => {
+            items.style.display = 'grid';
+        })
+        enableEditBtn();
+    })
+}
+
+function saveTodoEachAfterEdit(e) {
+    const saveBtnEditVariable = e.currentTarget.parentNode.parentElement.parentElement.childNodes[1].childNodes[1].childNodes[9].childNodes[1];// selects saveBtnEdit
+    saveBtnEditVariable.addEventListener('click', event => {
+        const dateBtnIndianFormat = dateBtnEdit.value.split('-').reverse().join('-');
+        addTodoDiv.style.display = 'flex';
+        editTodo.style.display = 'none';
+        event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].style.display = 'grid';  // selects details
+        event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[0].childNodes[1].textContent = `${nameBtnEdit.value}`;
+        event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[1].textContent = `${descriptionBtnEdit.value}`;
+        event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[2].textContent = `${dateBtnIndianFormat}`;
+        event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[3].textContent = `${statusBtnEdit.value}`;
+        console.log(event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[3]);
+
+        enableEditBtn();
+    })
+}
+
+function editTodoEach() {
+    const todoEditBtnAll = document.querySelectorAll('.todoEditBtn');
+    todoEditBtnAll.forEach(items => {
         items.addEventListener("click", e => {
             e.currentTarget.parentNode.parentElement.style.display = 'none';  // selects details with respect to editBtn
             editTodo.style.display = 'grid';
             e.currentTarget.parentNode.parentElement.parentElement.append(editTodo);
-
-
-            // document.onkeydown = function (evt) {
-            //     evt = evt || window.event;
-            //     if (evt.key === 'Escape') {
-            //         editDiv.remove();
-            //         console.log(evt.currentTarget)
-            //         // e.currentTarget.parentNode.parentElement.style.display = 'grid';  // selects details with respect to editBtn
-
-            //     }
-            // };
-
-            const editButton = e.currentTarget.parentNode.parentElement.parentElement.childNodes[1].childNodes[1].childNodes[9].childNodes[1]
-            editButton.addEventListener('click', event => {
-                const dateBtnIndianFormat = dateBtnEdit.value.split('-').reverse().join('-');
-                addTodoDiv.style.display = 'flex';
-                editTodo.style.display = 'none';
-                event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].style.display = 'grid';  // selects details
-                event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[0].childNodes[1].textContent = `${nameBtnEdit.value}`;
-                event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[1].textContent = `${descriptionBtnEdit.value}`;
-                event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[2].textContent = `${dateBtnIndianFormat}`;
-                event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[3].textContent = `${statusBtnEdit.value}`;
-                console.log(event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[3]);
+            // Disable all the edit button until the saveBtnEdit is pressed [For cancelEdit function above]
+            todoEditBtnAll.forEach(isTodoEditClicked => {
+                isTodoEditClicked.disabled = true;
+                saveTodoEachAfterEdit(e);
             })
+            // focus the name when clicked [used autofocus property on the html element]
+            nameBtnEdit.focus();
         })
+        todoEditCancel();
     })
 }
 
@@ -238,7 +261,7 @@ function predefinedTodoInput() {
     minimizeTodoDetails();
     fillSignTodo();
     removeTodo();
-    edit();
+    editTodoEach();
 }
 
 function userCreateTodoInput() {
@@ -251,13 +274,13 @@ function userCreateTodoInput() {
 function saveTodo() {
     saveBtn.addEventListener("click", () => {
         addTodoDiv.style.display = 'flex';
-        sectionFour.style.display = 'none';
+        addTodoConfirmation.style.display = 'none';
         userCreateTodoInput();
         minimizeTodoDetails();
         fillSignTodo();
         removeTodo();
         clickTodoListOrGridStyle();
-        edit();
+        editTodoEach();
     });
 }
 
@@ -265,6 +288,4 @@ predefinedTodoInput();
 addItemBtn();
 saveTodo();
 sortTodoListOrGridStyle();
-
-
 

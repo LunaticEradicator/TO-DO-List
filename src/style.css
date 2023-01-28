@@ -63,6 +63,11 @@ input[type=button]:hover {
     transform: scale(0.8);
 }
 
+::placeholder {
+    color: rgb(88, 87, 87);
+    opacity: 0.4;
+}
+
 .modal {
     background-color: rgb(29, 29, 29);
     border-radius: 10px;
@@ -113,10 +118,9 @@ input[type=button]:hover {
     /* border: 2px solid rgb(0, 0, 0); */
 }
 
-.sectionFour {
+.addTodoConfirmation {
     font-size: 1.2rem;
     gap: 5px;
-    /* display: none; */
 }
 
 
@@ -134,6 +138,18 @@ input[type=button]:hover {
 .saveBtn,
 .saveBtnEdit {
     background-color: rgb(42, 42, 43);
+    color: aliceblue;
+    cursor: pointer;
+    border: 1px solid rgb(161, 161, 161);
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    padding: 6px;
+}
+
+.cancelBtn,
+.cancelBtnEdit {
+    background-color: rgb(243, 106, 96);
     color: aliceblue;
     cursor: pointer;
     border: 1px solid rgb(161, 161, 161);

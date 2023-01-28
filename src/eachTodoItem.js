@@ -1,4 +1,4 @@
-import { addTodoDiv, sectionFour } from "./htmlElement"
+import { addTodoDiv, addTodoConfirmation } from "./htmlElement"
 
 let todoMain;
 let todoDetails;
@@ -55,13 +55,13 @@ export default function todoUICreate() {
     todoIcon.append(todoDeleteBtn, todoEditBtn, todoMinimizeBtn);
     todoMain.append(todoDetails);
     arrangeStyle.append(sectionThree);
-    sectionThree.prepend(sectionFour);
+    sectionThree.prepend(addTodoConfirmation);
     sectionThree.prepend(addTodoDiv);
     sectionThree.prepend(editTodo)
     sectionThree.append(todoMain);
 }
 export {
-    sectionFour,
+    addTodoConfirmation,
     todoMain, todoDetails,
     todoSign, todoName, todoDescription, todoStatus, todoDate,
     todoDeleteBtn, todoMinimizeBtn, todoIcon, todoEditBtn,

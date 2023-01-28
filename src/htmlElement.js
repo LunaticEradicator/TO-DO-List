@@ -9,12 +9,15 @@ const dateBtnEdit = document.querySelector('.dateBtnEdit');
 const gridIcon = document.querySelector('.gridIcon');
 const listIcon = document.querySelector('.listIcon');
 
-const sectionFour = document.querySelector('.sectionFour');
+const addTodoConfirmation = document.querySelector('.addTodoConfirmation');
+const cancelBtn = document.querySelector('.cancelBtn');
+const cancelBtnEdit = document.querySelector('.cancelBtnEdit');
 
 
 export {
     addTodoDiv, addTodoBtn, gridIcon, listIcon,
-    nameBtnEdit, descriptionBtnEdit, dateBtnEdit, statusBtnEdit, sectionFour
+    nameBtnEdit, descriptionBtnEdit, dateBtnEdit, statusBtnEdit,
+    addTodoConfirmation, cancelBtn, cancelBtnEdit
 }
 
 
