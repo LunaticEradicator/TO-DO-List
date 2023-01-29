@@ -11,9 +11,13 @@ import todoUICreate, {
     editTodo
 } from './eachTodoItem';
 
+const LOCAL_STORAGE_LIST_KEY = 'obj.sike'
 const obj = {
-    sike: [],
+    sike: JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [],
     currentStatus: '',
+}
+function save() {
+    localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(obj.sike));
 }
 
 class TodoClass {
@@ -245,30 +249,48 @@ function editTodoEach() {
     })
 }
 
-function todoSectionCreate() {
-    todoUICreate();  // from eachTodoItem.js
-    todoName.textContent = `${obj.sike[0].title}`;
-    todoDescription.textContent = `${obj.sike[0].description}`;
-    todoDate.textContent = `${obj.sike[0].date}`;
-    todoStatus.textContent = `${obj.sike[0].status}`;
+function clearElement() {
+    const todoMainAll = document.querySelectorAll('.todoMain');
+    todoMainAll.forEach(ok => {
+        ok.remove()
+    })
 }
 
+
+function todoRender() {
+    obj.sike.forEach(ok => {
+        todoUICreate();  // from eachTodoItem.js
+        todoName.textContent = `${ok.title}`;
+        todoDescription.textContent = `${ok.description}`;
+        todoDate.textContent = `${ok.date}`;
+        todoStatus.textContent = `${ok.status}`;
+        minimizeTodoDetails();
+        fillSignTodo();
+        removeTodo();
+        editTodoEach();
+    })
+}
+
+function todoRenderAndSaveLocalStorage() {
+    save(); // saves locally using local storage
+    clearElement(); // delete the elements [if skipped the todoMain element will be duplicated, since every element will be created when looping below]
+    todoRender();
+}
+
+
 function predefinedTodoInput() {
-    const listItemTwo = new TodoClass('Messi', 'GOAT', '2-11-1990', 'High');
-    obj.sike.push(listItemTwo);
-    todoSectionCreate();
+    // obj.sike = [];
+    const listItemTwo = new TodoClass('Messi ', 'GOAT', '2-11-1990', 'High');
+    obj.sike.unshift(listItemTwo);
+    // todoRenderAndSaveLocalStorage()
     // todo Functionality !-
-    minimizeTodoDetails();
-    fillSignTodo();
-    removeTodo();
-    editTodoEach();
 }
 
 function userCreateTodoInput() {
     const dateBtnIndianFormat = dateBtn.value.split('-').reverse().join('-');
     const listItem = new TodoClass(nameBtn.value, descriptionBtn.value, dateBtnIndianFormat, statusBtn.value);
     obj.sike.unshift(listItem);
-    todoSectionCreate();
+    todoRenderAndSaveLocalStorage();
 }
 
 function saveTodo() {
@@ -281,11 +303,12 @@ function saveTodo() {
         removeTodo();
         clickTodoListOrGridStyle();
         editTodoEach();
+
     });
 }
-
-predefinedTodoInput();
-addItemBtn();
+// predefinedTodoInput();
+todoRenderAndSaveLocalStorage();
 saveTodo();
+addItemBtn();
 sortTodoListOrGridStyle();
 
