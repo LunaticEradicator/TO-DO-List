@@ -188,7 +188,7 @@ function fillSignTodo() {
 }
 
 function removeTodo() {
-    // console.log(e.currentTarget.parentNode.parentElement.parentElement);
+    // localStorage Delete Functionality
     const todoDeleteBtnAll = document.querySelectorAll('.todoDeleteBtn');
     todoDeleteBtnAll.forEach((deleteAll, index) => {
         deleteAll.addEventListener("click", (e) => {
@@ -196,8 +196,6 @@ function removeTodo() {
             obj.sike.splice(index, 1,);
             console.log(obj.sike);
             todoRenderAndSaveLocalStorage();
-            // e.currentTarget.parentNode.parentElement.parentElement.remove(); // select todoMain and remove
-            // console.log(e.currentTarget.parentNode.parentElement.parentElement)
         });
     })
 }
@@ -229,13 +227,8 @@ function saveTodoEachAfterEdit(e, index) {
         const dateBtnIndianFormat = dateBtnEdit.value.split('-').reverse().join('-');
         addTodoDiv.style.display = 'flex';
         editTodo.style.display = 'none';
-        // event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].style.display = 'grid';  // selects details
-        // event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[0].childNodes[1].textContent = `${nameBtnEdit.value}`;
-        // event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[1].textContent = `${descriptionBtnEdit.value}`;
-        // event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[2].textContent = `${dateBtnIndianFormat}`;
-        // event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[3].textContent = `${statusBtnEdit.value}`;
 
-
+        // localStorage Edit Functionality
         const listItemEdit = new TodoClass(`${nameBtnEdit.value}`, `${descriptionBtnEdit.value}`, `${dateBtnIndianFormat}`, `${statusBtnEdit.value}`);
         obj.sike.splice(index, 1, listItemEdit)
         todoRenderAndSaveLocalStorage();
