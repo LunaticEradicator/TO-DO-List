@@ -11,7 +11,7 @@ import todoUICreate, {
     editTodo
 } from './eachTodoItem';
 
-const LOCAL_STORAGE_LIST_KEY = 'obj.sike'
+const LOCAL_STORAGE_LIST_KEY = 'obj.sike';
 const obj = {
     sike: JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [],
     currentStatus: '',
@@ -188,11 +188,21 @@ function fillSignTodo() {
 }
 
 function removeTodo() {
-    todoDeleteBtn.addEventListener("click", (e) => {
-        e.currentTarget.parentNode.parentElement.parentElement.remove(); // select todoMain and remove
-        // console.log(e.currentTarget.parentNode.parentElement.parentElement)
-    });
+    // console.log(e.currentTarget.parentNode.parentElement.parentElement);
+    const todoDeleteBtnAll = document.querySelectorAll('.todoDeleteBtn');
+    todoDeleteBtnAll.forEach((deleteAll, index) => {
+        deleteAll.addEventListener("click", (e) => {
+            console.log(index);
+            obj.sike.splice(index, 1,);
+            console.log(obj.sike);
+            todoRenderAndSaveLocalStorage();
+            // e.currentTarget.parentNode.parentElement.parentElement.remove(); // select todoMain and remove
+            // console.log(e.currentTarget.parentNode.parentElement.parentElement)
+        });
+    })
 }
+
+// Edit Button Functionality Starting
 
 function enableEditBtn() {
     // Enable all the edit button until the clearBtnEdit is pressed [For cancel edit log above]
@@ -213,34 +223,41 @@ function todoEditCancel() {
     })
 }
 
-function saveTodoEachAfterEdit(e) {
+function saveTodoEachAfterEdit(e, index) {
     const saveBtnEditVariable = e.currentTarget.parentNode.parentElement.parentElement.childNodes[1].childNodes[1].childNodes[9].childNodes[1];// selects saveBtnEdit
     saveBtnEditVariable.addEventListener('click', event => {
         const dateBtnIndianFormat = dateBtnEdit.value.split('-').reverse().join('-');
         addTodoDiv.style.display = 'flex';
         editTodo.style.display = 'none';
-        event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].style.display = 'grid';  // selects details
-        event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[0].childNodes[1].textContent = `${nameBtnEdit.value}`;
-        event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[1].textContent = `${descriptionBtnEdit.value}`;
-        event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[2].textContent = `${dateBtnIndianFormat}`;
-        event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[3].textContent = `${statusBtnEdit.value}`;
-        console.log(event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[3]);
+        // event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].style.display = 'grid';  // selects details
+        // event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[0].childNodes[1].textContent = `${nameBtnEdit.value}`;
+        // event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[1].textContent = `${descriptionBtnEdit.value}`;
+        // event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[2].textContent = `${dateBtnIndianFormat}`;
+        // event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[3].textContent = `${statusBtnEdit.value}`;
 
+
+        const listItemEdit = new TodoClass(`${nameBtnEdit.value}`, `${descriptionBtnEdit.value}`, `${dateBtnIndianFormat}`, `${statusBtnEdit.value}`);
+        obj.sike.splice(index, 1, listItemEdit)
+        todoRenderAndSaveLocalStorage();
         enableEditBtn();
+        console.log(obj.sike)
     })
 }
 
 function editTodoEach() {
     const todoEditBtnAll = document.querySelectorAll('.todoEditBtn');
-    todoEditBtnAll.forEach(items => {
+    todoEditBtnAll.forEach((items, index) => { // index parameter get the index position of the nodeList[of each todoEditBtn from todoEditBtnAll ]
         items.addEventListener("click", e => {
+            console.log(index);
+
             e.currentTarget.parentNode.parentElement.style.display = 'none';  // selects details with respect to editBtn
             editTodo.style.display = 'grid';
-            e.currentTarget.parentNode.parentElement.parentElement.append(editTodo);
+            e.currentTarget.parentNode.parentElement.parentElement.append(editTodo); // display editUI on edit click
+
             // Disable all the edit button until the saveBtnEdit is pressed [For cancelEdit function above]
             todoEditBtnAll.forEach(isTodoEditClicked => {
                 isTodoEditClicked.disabled = true;
-                saveTodoEachAfterEdit(e);
+                saveTodoEachAfterEdit(e, index);
             })
             // focus the name when clicked [used autofocus property on the html element]
             nameBtnEdit.focus();
@@ -249,13 +266,14 @@ function editTodoEach() {
     })
 }
 
+// Edit Button Functionality Ending
+
 function clearElement() {
     const todoMainAll = document.querySelectorAll('.todoMain');
-    todoMainAll.forEach(ok => {
-        ok.remove()
+    todoMainAll.forEach(clear => {
+        clear.remove()
     })
 }
-
 
 function todoRender() {
     obj.sike.forEach(ok => {
@@ -266,15 +284,15 @@ function todoRender() {
         todoStatus.textContent = `${ok.status}`;
         minimizeTodoDetails();
         fillSignTodo();
-        removeTodo();
-        editTodoEach();
     })
 }
 
 function todoRenderAndSaveLocalStorage() {
     save(); // saves locally using local storage
-    clearElement(); // delete the elements [if skipped the todoMain element will be duplicated, since every element will be created when looping below]
+    clearElement(); // delete the elements [if skipped the todoMain element will be duplicated, since every element will be created when looping [todoRender]]
     todoRender();
+    editTodoEach();
+    removeTodo();
 }
 
 
@@ -282,8 +300,14 @@ function predefinedTodoInput() {
     // obj.sike = [];
     const listItemTwo = new TodoClass('Messi ', 'GOAT', '2-11-1990', 'High');
     obj.sike.unshift(listItemTwo);
-    // todoRenderAndSaveLocalStorage()
+    // todoRenderAndSaveLocalStorage()  ------------------------------ fixxxxxx[add a predefiendTodoInput]
     // todo Functionality !-
+    minimizeTodoDetails();
+    fillSignTodo();
+    removeTodo();
+    editTodoEach();
+    console.log(obj.sike)
+    // obj.sike.shift(listItemTwo);
 }
 
 function userCreateTodoInput() {
@@ -303,7 +327,7 @@ function saveTodo() {
         removeTodo();
         clickTodoListOrGridStyle();
         editTodoEach();
-
+        console.log(obj.sike)
     });
 }
 // predefinedTodoInput();
@@ -311,4 +335,4 @@ todoRenderAndSaveLocalStorage();
 saveTodo();
 addItemBtn();
 sortTodoListOrGridStyle();
-
+console.log(obj.sike)
