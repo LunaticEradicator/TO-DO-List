@@ -196,9 +196,10 @@ input[type=button]:hover {
     border-radius: 10px;
 }
 
+
 .todoMain {
-    /* display: grid;
-    grid-auto-flow: column;
+    /* display: block; */
+    /* grid-auto-flow: column;
     grid-template-columns: 1fr;
     align-items: center; */
     border-radius: 10px;
@@ -342,6 +343,7 @@ input[type=button]:hover {
 }
 
 .onClickTodoMainShrink {
+    /* display: block; */
     background-color: rgb(223, 189, 189);
     border-radius: 10px;
     padding: 10px;
@@ -356,6 +358,11 @@ input[type=button]:hover {
 .onClickFillTodoSign {
     background-color: rgba(0, 0, 0, 0.486);
     border-color: white;
+}
+
+.onClickDefaultTodoSign {
+    border: 1px solid rgb(70, 68, 68);
+    background-color: rgb(255, 255, 255);
 }
 
 .signStyle {
