@@ -46,6 +46,37 @@ function addItemBtn() {
     });
 }
 
+function statusPriorityColor() {
+    const todoStatusAll = document.querySelectorAll('.todoStatus');
+    todoStatusAll.forEach(selected => {
+        obj.currentStatus = selected.textContent;
+        console.log(obj.currentStatus);
+        if (selected.textContent === 'High') {
+            selected.style.color = 'red';
+        }
+        else if (selected.textContent === 'Low') {
+            selected.style.color = 'Blue';
+        }
+        else if (selected.textContent === 'None') {
+            selected.style.color = 'Grey';
+        }
+    });
+}
+
+function clearValue() {
+    nameBtn.value = '';
+    descriptionBtn.value = '';
+    dateBtn.value = '';
+    statusBtn.value = 'None';
+}
+
+function clearValueEdit() {
+    nameBtnEdit.value = '';
+    descriptionBtnEdit.value = '';
+    dateBtnEdit.value = '';
+    statusBtnEdit.value = 'None';
+}
+
 // todoFunctionality !-
 
 
@@ -177,8 +208,24 @@ function minimizeTodoDetails() {
 
 function fillSignTodoFnc(e) {
     console.log('click');
-    e.currentTarget.classList.toggle('onClickFillTodoSign');
-    // console.log(e.currentTarget.parentNode.parentElement.parentElement.classList.toggle('signStyle')); // selects main
+    const eachMain = e.currentTarget.parentNode.parentElement.parentElement;
+    if (e.currentTarget.classList.contains('onClickFillTodoSign')) {
+        e.currentTarget.classList.remove('onClickFillTodoSign');
+        eachMain.classList.remove('signStyle'); // selects main
+        e.currentTarget.parentNode.parentElement.childNodes[4].childNodes[0].disabled = false;
+        e.currentTarget.parentNode.parentElement.childNodes[4].childNodes[1].disabled = false;
+        e.currentTarget.parentNode.parentElement.childNodes[4].childNodes[2].disabled = false;
+    }
+    else {
+        e.currentTarget.classList.add('onClickFillTodoSign');
+        eachMain.classList.add('signStyle'); // selects main
+        e.currentTarget.parentNode.parentElement.childNodes[4].childNodes[0].disabled = false;
+        e.currentTarget.parentNode.parentElement.childNodes[4].childNodes[1].disabled = true;
+        e.currentTarget.parentNode.parentElement.childNodes[4].childNodes[2].disabled = true;
+        setTimeout(() => {
+            eachMain.remove();
+        }, 1000);
+    }
 }
 
 function fillSignTodo() {
@@ -208,6 +255,9 @@ function enableEditBtn() {
     const todoEditBtnAll = document.querySelectorAll('.todoEditBtn');
     todoEditBtnAll.forEach(isTodoEditClicked => {
         isTodoEditClicked.disabled = false; // disable todoEditBtn 
+        isTodoEditClicked.parentElement.parentElement.parentElement.classList.remove('onClickEditTodoMainStyle'); // removes todoMain Border and BGColor 
+        statusPriorityColor(); // display the correct color for the status
+        clearValueEdit();
     })
 }
 
@@ -239,26 +289,33 @@ function saveTodoEachAfterEdit(e, index) {
     //         console.log(obj.sike)
     //     })
     // })
-
     const saveBtnEditVariable = e.currentTarget.parentNode.parentElement.parentElement.childNodes[1].childNodes[1].childNodes[9].childNodes[1];// selects saveBtnEdit
     saveBtnEditVariable.addEventListener('click', event => {
-        const dateBtnIndianFormat = dateBtnEdit.value.split('-').reverse().join('-');
-        addTodoDiv.style.display = 'flex';
-        editTodo.style.display = 'none';
-        event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].style.display = 'grid';  // selects details
-        event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[0].childNodes[1].textContent = `${nameBtnEdit.value}`;
-        event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[1].textContent = `${descriptionBtnEdit.value}`;
-        event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[2].textContent = `${dateBtnIndianFormat}`;
-        event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[3].textContent = `${statusBtnEdit.value}`;
-        // console.log(event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[3]);
-        enableEditBtn();
-    })
+        if (nameBtnEdit.value === "" || descriptionBtnEdit.value === "" || dateBtnEdit.value === "" || statusBtnEdit.value === "") {
+            // HTML required field will show
+        }
+        else {
+            event.preventDefault()
+            const dateBtnIndianFormat = dateBtnEdit.value.split('-').reverse().join('-');
+            addTodoDiv.style.display = 'flex';
+            editTodo.style.display = 'none';
+            event.currentTarget.parentNode.parentElement.parentElement.parentElement.parentElement.style.border = 'none';  // selects details with respect to editBtn
+            event.currentTarget.parentNode.parentElement.parentElement.parentElement.parentElement.style.backgroundColor = 'rgb(230, 230, 230)';  // selects details with respect to editBtn
+            event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].style.display = 'grid';  // selects details
+            event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[0].childNodes[1].textContent = `${nameBtnEdit.value}`;
+            event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[1].textContent = `${descriptionBtnEdit.value}`;
+            event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[2].textContent = dateBtnIndianFormat;
+            event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[3].textContent = `${statusBtnEdit.value}`;
+            enableEditBtn();
+        }
 
+    })
 }
 function editTodoEach() {
     const todoEditBtnAll = document.querySelectorAll('.todoEditBtn');
     todoEditBtnAll.forEach((items, index) => { // index parameter get the index position of the nodeList[of each todoEditBtn from todoEditBtnAll ]
         items.addEventListener("click", e => {
+            e.currentTarget.parentNode.parentElement.parentElement.classList.add('onClickEditTodoMainStyle');
             e.currentTarget.parentNode.parentElement.style.display = 'none';  // selects details with respect to editBtn
             editTodo.style.display = 'grid';
             e.currentTarget.parentNode.parentElement.parentElement.append(editTodo); // display editUI on edit click
@@ -272,10 +329,11 @@ function editTodoEach() {
         })
         todoEditCancel();
     })
+
+
 }
 
 // Edit Button Functionality Ending
-
 
 function todoRender() {
     // obj.sike.forEach(ok => {
@@ -296,6 +354,7 @@ function todoRender() {
     todoStatus.textContent = `${obj.sike[0].status}`;
 }
 
+
 // function clearElement() {
 //     const todoMainAll = document.querySelectorAll('.todoMain');
 //     todoMainAll.forEach(clear => {
@@ -312,7 +371,7 @@ function todoRender() {
 
 
 function predefinedTodoInput() {
-    const listItemTwo = new TodoClass('Messi ', 'GOAT', '2-11-1990', 'High');
+    const listItemTwo = new TodoClass('Lionel Messi', 'The GOAT', '24-06-1987', 'High');
     obj.sike.unshift(listItemTwo);
     // todoRenderAndSaveLocalStorage();
     // todo Functionality !-
@@ -321,7 +380,9 @@ function predefinedTodoInput() {
     fillSignTodo();
     removeTodo();
     editTodoEach();
+    statusPriorityColor();
 }
+
 
 function userCreateTodoInput() {
     const dateBtnIndianFormat = dateBtn.value.split('-').reverse().join('-');
@@ -334,20 +395,28 @@ function userCreateTodoInput() {
 
 function saveTodo() {
     saveBtn.addEventListener("click", () => {
-        addTodoDiv.style.display = 'flex';
-        addTodoConfirmation.style.display = 'none';
-        userCreateTodoInput();
-        minimizeTodoDetails();
-        fillSignTodo();
-        removeTodo();
-        editTodoEach();
-        clickTodoListOrGridStyle();
-        console.log(obj.sike)
+        if (nameBtn.value === "" || descriptionBtn.value === "" || dateBtn.value === "" || statusBtn.value === "") {
+            // HTML required field will show
+        }
+        else {
+            event.preventDefault()
+            addTodoDiv.style.display = 'flex';
+            addTodoConfirmation.style.display = 'none';
+            userCreateTodoInput();
+            minimizeTodoDetails();
+            fillSignTodo();
+            removeTodo();
+            editTodoEach();
+            clickTodoListOrGridStyle();
+            statusPriorityColor();
+            clearValue();
+            console.log(obj.sike)
+        }
     });
 }
+
 predefinedTodoInput();
 // todoRenderAndSaveLocalStorage();
 saveTodo();
 addItemBtn();
 sortTodoListOrGridStyle();
-console.log(obj.sike)

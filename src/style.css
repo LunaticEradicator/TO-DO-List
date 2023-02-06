@@ -1,17 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
 body {
-    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    /* font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
+    font-family: 'Itim', cursive !important;
 }
 
 html,
 body {
-    /* min-height: 100%;
-    width: 100%; */
+    font-family: 'Itim', cursive;
     margin: 0px;
+    color: #1f271b;
+}
+
+button {
+    font-family: 'Itim', cursive;
 }
 
 h1 {
     margin: 0;
-    color: rgb(124, 105, 209);
+    color: white;
     font-size: 3rem;
     text-align: center;
 }
@@ -27,11 +34,12 @@ input[type="text"] {
 form {
     display: flex;
     flex-direction: column;
-    border: 2px solid rgba(1, 56, 15, 0.486);
-    background-color: rgba(200, 212, 203, 0.486);
     color: rgb(49, 182, 182);
     color: white;
     margin: 0;
+    border: 2px solid rgba(1, 56, 15, 0.486);
+    background-color: rgba(92, 92, 92, 0.452);
+    font-family: 'Itim', cursive;
 }
 
 form>div>input {
@@ -43,29 +51,40 @@ form>div>input {
     transition: 1s;
     display: flex;
     flex-grow: 1;
+    font-family: 'Itim', cursive;
 }
 
 input[type=button] {
     border-radius: 10px;
     font-size: large;
+    font-family: 'Itim', cursive;
 }
 
 input[type=date] {
-    cursor: text
+    cursor: text;
+    font-family: 'Itim', cursive;
+}
+
+select {
+    cursor: text;
+    font-family: 'Itim', cursive;
 }
 
 input[type=text]:focus {
     border-radius: 0px;
-    /* border-bottom: 2px solid black; */
+    font-family: 'Itim', cursive;
+    color: white;
 }
 
 input[type=button]:hover {
     transform: scale(0.8);
+
 }
 
 ::placeholder {
-    color: rgb(88, 87, 87);
-    opacity: 0.4;
+    color: rgb(0, 0, 0);
+    opacity: 0.5;
+    font-family: 'Itim', cursive;
 }
 
 .modal {
@@ -77,30 +96,34 @@ input[type=button]:hover {
 .content {
     display: flex;
     flex-direction: column;
-    /* overflow: hidden; */
 }
 
 .container {
     /* display: flex; */
     display: grid;
     grid-template-columns: 1fr 5fr;
-    gap: 20px;
-    border: 5px dotted rgb(10, 5, 5);
+    /* gap: 20px; */
+    /* border-radius: 10px; */
     min-height: 100vh;
-    background-color: rgb(240, 250, 247);
+    background-color: black;
 }
 
 .sectionOne {
-    border: 2px dashed red;
-    padding: 0;
-    margin: 0;
+    margin: 5px;
+    border-radius: 10px;
+    /* background-color: #1f271b; */
+    background-color: #141414;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid #b8b8aa;
 }
 
 .sectionTwo {
-    border: 2px dashed rgb(204, 0, 255);
+    margin: 5px;
+    border-radius: 5px;
+    border: 2px solid #b8b8aa;
+    background-color: #141414;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -115,15 +138,22 @@ input[type=button]:hover {
     gap: 10px;
     padding: 10px;
     border-radius: 10px;
-    /* border: 2px solid rgb(0, 0, 0); */
+    /* background-color: #ddd5d0; */
+}
+
+.arrangeStyle {
+    min-height: 100vh;
+    border: 2px solid rgba(1, 56, 15, 0.486);
+    border-radius: 10px;
+    background-color: rgb(230, 230, 230);
 }
 
 .addTodoConfirmation {
     font-size: 1.2rem;
     gap: 5px;
     display: none;
-}
 
+}
 
 .dateDiv {
     text-align: center;
@@ -142,6 +172,7 @@ input[type=button]:hover {
     color: aliceblue;
     cursor: pointer;
     border: 1px solid rgb(161, 161, 161);
+    border-radius: 10px;
     display: flex;
     flex: 1;
     justify-content: center;
@@ -190,11 +221,6 @@ input[type=button]:hover {
     /* background-color: rgb(219, 219, 219); */
 }
 
-.arrangeStyle {
-    /* height: 100vh; */
-    border: 2px solid;
-    border-radius: 10px;
-}
 
 
 .todoMain {
@@ -205,8 +231,16 @@ input[type=button]:hover {
     border-radius: 10px;
     padding-top: 3px;
     padding-bottom: 3px;
-    transition: 1s;
-    background-color: rgba(220, 233, 204, 0.404);
+    /* transition: 1s; */
+    background-color: rgba(200, 212, 203, 0.486);
+    color: #141414;
+    border: 2px solid rgba(1, 56, 15, 0.486);
+    /* text-decoration: line-through; */
+}
+
+.onClickEditTodoMainStyle {
+    background-color: rgb(230, 230, 230);
+    border: none;
 }
 
 .todoDetails {
@@ -227,12 +261,11 @@ input[type=button]:hover {
     align-items: center;
     justify-content: center;
     border: 2px solid rgba(1, 56, 15, 0.486);
-    background-color: rgba(200, 212, 203, 0.486);
+    background-color: #141414;
     color: rgb(49, 182, 182);
     border-radius: 10px;
     padding-left: 5px;
     gap: 10px;
-    /* margin-top: 5px; */
     cursor: pointer;
 }
 
@@ -268,9 +301,11 @@ input[type=button]:hover {
 }
 
 .todoDeleteBtn {
+    all: unset;
     width: 30px;
     background: url('../img/delete.png') center/contain no-repeat;
     cursor: pointer;
+    /* background-color: rgba(255, 255, 255, 0.966); */
 }
 
 .todoEditBtn {
@@ -290,7 +325,7 @@ input[type=button]:hover {
     all: unset;
     width: 30px;
     height: 30px;
-    background: url('../img/list.svg') center/contain no-repeat;
+    background: url('../img/list.png') center/contain no-repeat;
     cursor: pointer;
 }
 
@@ -298,7 +333,7 @@ input[type=button]:hover {
     all: unset;
     width: 30px;
     height: 30px;
-    background: url('../img/grid.svg') center/contain no-repeat;
+    background: url('../img/grid.png') center/contain no-repeat;
     cursor: pointer;
 }
 
@@ -347,7 +382,7 @@ input[type=button]:hover {
     background-color: rgb(223, 189, 189);
     border-radius: 10px;
     padding: 10px;
-    width: 175px;
+    width: 205px;
 }
 
 .onClickTodoDetailsShrink {

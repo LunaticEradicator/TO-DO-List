@@ -28,7 +28,7 @@ export default function todoUICreate() {
     todoStatus = document.createElement('div');
     todoDate = document.createElement('div');
     todoIcon = document.createElement('div');
-    todoDeleteBtn = document.createElement('div');
+    todoDeleteBtn = document.createElement('button');
     todoMinimizeBtn = document.createElement('button');
     todoEditBtn = document.createElement('button');
 
