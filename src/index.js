@@ -224,7 +224,7 @@ function fillSignTodoFnc(e) {
         e.currentTarget.parentNode.parentElement.childNodes[4].childNodes[2].disabled = true;
         setTimeout(() => {
             eachMain.remove();
-        }, 1000);
+        }, 1500);
     }
 }
 
