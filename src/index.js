@@ -12,6 +12,7 @@ import todoUICreate, {
 } from './eachTodoItem';
 
 const LOCAL_STORAGE_LIST_KEY = 'obj.sike';
+let isTodoListOrGridStyle;
 const obj = {
     sike: JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [],
     currentStatus: '',
@@ -74,7 +75,7 @@ function clearValueEdit() {
 }
 
 // todoFunctionality !-
-let isTodoListOrGridStyle;
+
 
 function sortTodoListOrGridStyle() { // Check for EventListener and create sorting order [grid or list]
     listIcon.addEventListener('click', e => {
@@ -354,12 +355,12 @@ function saveTodo() {
             clickTodoListOrGridStyle();
             statusPriorityColor();
             clearValue();
-            console.log(obj.sike)
+            // console.log(obj.sike)
         }
     });
 }
 
-predefinedTodoInput();
-saveTodo();
-addItemBtn();
-sortTodoListOrGridStyle();
+// predefinedTodoInput();
+// saveTodo();
+// addItemBtn();
+// sortTodoListOrGridStyle();
