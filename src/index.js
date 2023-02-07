@@ -6,7 +6,7 @@ import {
 } from './htmlElement';
 import { nameBtn, saveBtn, descriptionBtn, dateBtn, statusBtn } from './addItem';
 import todoUICreate, {
-    todoMain, todoDetails, todoSign, todoName, todoDescription,
+    todoMain, todoDetails, todoName, todoDescription,
     todoStatus, todoDate, todoDeleteBtn, todoMinimizeBtn, todoEditBtn,
     editTodo
 } from './eachTodoItem';
@@ -16,10 +16,6 @@ const obj = {
     sike: JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [],
     currentStatus: '',
 }
-
-// function save() {
-//     localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(obj.sike));
-// }
 
 class TodoClass {
     constructor(title, description, date, status) {
@@ -78,8 +74,6 @@ function clearValueEdit() {
 }
 
 // todoFunctionality !-
-
-
 let isTodoListOrGridStyle;
 
 function sortTodoListOrGridStyle() { // Check for EventListener and create sorting order [grid or list]
@@ -243,13 +237,11 @@ function removeTodo() {
             obj.sike.splice(index, 1);
             e.currentTarget.parentNode.parentElement.parentElement.remove();
             console.log(obj.sike);
-            // todoRenderAndSaveLocalStorage();
         });
     })
 }
 
 // Edit Button Functionality Starting
-
 function enableEditBtn() {
     // Enable all the edit button until the clearBtnEdit is pressed [For cancel edit log above]
     const todoEditBtnAll = document.querySelectorAll('.todoEditBtn');
@@ -272,23 +264,7 @@ function todoEditCancel() {
     })
 }
 
-function saveTodoEachAfterEdit(e, index) {
-    // const saveBtnEditVariable = e.currentTarget.parentNode.parentElement.parentElement.childNodes[1].childNodes[1].childNodes[9].childNodes[1];// selects saveBtnEdit
-    // const saveBtnEditAll = document.querySelectorAll('.saveBtnEdit');
-    // saveBtnEditAll.forEach(saveBtnEditVariable => {
-    //     saveBtnEditVariable.addEventListener('click', event => {
-    //         const dateBtnIndianFormat = dateBtnEdit.value.split('-').reverse().join('-');
-    //         addTodoDiv.style.display = 'flex';
-    //         editTodo.style.display = 'none';
-
-    //         // localStorage Edit Functionality
-    //         const listItemEdit = new TodoClass(`${nameBtnEdit.value}`, `${descriptionBtnEdit.value}`, `${dateBtnIndianFormat}`, `${statusBtnEdit.value}`);
-    //         obj.sike.splice(index, 1, listItemEdit)
-    //         todoRenderAndSaveLocalStorage();
-    //         enableEditBtn();
-    //         console.log(obj.sike)
-    //     })
-    // })
+function saveTodoEachAfterEdit(e) {
     const saveBtnEditVariable = e.currentTarget.parentNode.parentElement.parentElement.childNodes[1].childNodes[1].childNodes[9].childNodes[1];// selects saveBtnEdit
     saveBtnEditVariable.addEventListener('click', event => {
         if (nameBtnEdit.value === "" || descriptionBtnEdit.value === "" || dateBtnEdit.value === "" || statusBtnEdit.value === "") {
@@ -308,7 +284,6 @@ function saveTodoEachAfterEdit(e, index) {
             event.currentTarget.parentNode.parentElement.parentElement.parentElement.childNodes[0].childNodes[3].textContent = `${statusBtnEdit.value}`;
             enableEditBtn();
         }
-
     })
 }
 function editTodoEach() {
@@ -329,24 +304,11 @@ function editTodoEach() {
         })
         todoEditCancel();
     })
-
-
 }
 
 // Edit Button Functionality Ending
 
 function todoRender() {
-    // obj.sike.forEach(ok => {
-    //     todoUICreate();  // from eachTodoItem.js
-    //     todoName.textContent = `${ok.title}`;
-    //     todoDescription.textContent = `${ok.description}`;
-    //     todoDate.textContent = `${ok.date}`;
-    //     todoStatus.textContent = `${ok.status}`;
-    //     minimizeTodoDetails();
-    //     fillSignTodo();
-    //     removeTodo();
-    //     editTodoEach();
-    // })
     todoUICreate();  // from eachTodoItem.js
     todoName.textContent = `${obj.sike[0].title}`;
     todoDescription.textContent = `${obj.sike[0].description}`;
@@ -355,25 +317,9 @@ function todoRender() {
 }
 
 
-// function clearElement() {
-//     const todoMainAll = document.querySelectorAll('.todoMain');
-//     todoMainAll.forEach(clear => {
-//         clear.remove()
-//     })
-// }
-
-
-// function todoRenderAndSaveLocalStorage() {
-//      save(); // saves locally using local storage
-//      clearElement(); // delete the elements [if skipped the todoMain element will be duplicated, since every element will be created when looping [todoRender]]
-//      todoRender();
-// }
-
-
 function predefinedTodoInput() {
     const listItemTwo = new TodoClass('Lionel Messi', 'The GOAT', '24-06-1987', 'High');
     obj.sike.unshift(listItemTwo);
-    // todoRenderAndSaveLocalStorage();
     // todo Functionality !-
     todoRender();
     minimizeTodoDetails();
@@ -389,8 +335,6 @@ function userCreateTodoInput() {
     const listItem = new TodoClass(nameBtn.value, descriptionBtn.value, dateBtnIndianFormat, statusBtn.value);
     obj.sike.unshift(listItem);
     todoRender();
-    // todoRenderAndSaveLocalStorage();
-    // obj.sike.splice(obj.sike.length, 0, listItem);
 }
 
 function saveTodo() {
@@ -416,7 +360,6 @@ function saveTodo() {
 }
 
 predefinedTodoInput();
-// todoRenderAndSaveLocalStorage();
 saveTodo();
 addItemBtn();
 sortTodoListOrGridStyle();
