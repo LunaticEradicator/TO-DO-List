@@ -1,0 +1,464 @@
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+
+:root {
+  --background-color: #141414;
+  --button-color: rgb(42, 42, 43);
+  --transition-time: 0.5s;
+  --animation-details: confirmationAnimation 0.3s ease-in-out;
+  --font-name: "Itim", cursive;
+  --font-color: aliceblue;
+}
+
+body {
+  /* font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
+  font-family: var(--font-name);
+}
+
+html,
+body {
+  font-family: var(--font-name);
+  margin: 0px;
+  color: #1f271b;
+}
+
+button {
+  font-family: var(--font-name);
+}
+
+h1 {
+  margin: 0;
+  color: rgb(49, 182, 182);
+  font-size: 3rem;
+  text-align: center;
+}
+
+h2 {
+  margin: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  border: 2px solid rgba(1, 56, 15, 0.486);
+  background-color: rgba(177, 176, 176, 0.452);
+  font-family: var(--font-name);
+}
+
+form > div > input {
+  border: none;
+  font-size: 1rem;
+  background: none;
+  outline: none;
+  transition: var(--transition-time);
+  display: flex;
+  flex-grow: 1;
+  font-family: var(--font-name);
+}
+
+input[type="text"] {
+  font-weight: bold;
+}
+
+input[type="button"] {
+  border-radius: 10px;
+  font-size: large;
+  font-family: var(--font-name);
+}
+
+input[type="date"] {
+  cursor: text;
+  font-family: var(--font-name);
+}
+
+select {
+  cursor: text;
+  font-family: var(--font-name);
+  transition: var(--transition-time);
+}
+
+::placeholder {
+  color: var(--button-color);
+  opacity: 0.5;
+  font-family: var(--font-name);
+}
+
+.modal {
+  background-color: var(--background-color);
+  border-radius: 10px;
+  border: 2px solid aquamarine;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  min-height: 100vh;
+  background-color: black;
+}
+
+.sectionOne {
+  margin: 5px;
+  border-radius: 10px;
+  background-color: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #b8b8aa;
+}
+
+.sectionTwo {
+  margin: 5px;
+  border-radius: 5px;
+  border: 2px solid #b8b8aa;
+  background-color: var(--background-color);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.sectionThree {
+  padding-left: 10px;
+  padding-right: 10px;
+  display: grid;
+  font-size: 1.2rem;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.arrangeStyle {
+  min-height: 100vh;
+  border: 2px solid rgba(1, 56, 15, 0.486);
+  border-radius: 10px;
+  background-color: whitesmoke;
+}
+
+.addTodoConfirmation {
+  font-size: 1.2rem;
+  gap: 5px;
+  display: none;
+  animation: var(--animation-details);
+}
+
+.dateDiv {
+  text-align: center;
+}
+
+.saveBtnDiv {
+  display: flex;
+  flex: 1;
+}
+
+.saveBtn,
+.saveBtnEdit {
+  background-color: var(--button-color);
+  color: var(--font-color);
+  cursor: pointer;
+  border: 1px solid rgb(161, 161, 161);
+  border-radius: 10px;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  padding: 6px;
+  transition: var(--transition-time);
+}
+
+.cancelBtn,
+.cancelBtnEdit {
+  background-color: rgb(243, 106, 96);
+  color: var(--font-color);
+  cursor: pointer;
+  border: 1px solid rgb(161, 161, 161);
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  padding: 6px;
+}
+
+.statusBtn,
+.statusBtnEdit {
+  background-color: var(--button-color);
+  color: var(--font-color);
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.addItem {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  border-radius: 10px;
+  padding: 0px;
+  padding-left: 10px;
+  align-items: center;
+  gap: 5x;
+}
+
+.hud {
+  display: flex;
+  justify-content: end;
+  gap: 5px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.todoMain {
+  border-radius: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  background-color: rgba(200, 212, 203, 0.486);
+  color: var(--background-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.521);
+  transition: var(--transition-time);
+}
+
+.todoDetails {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  border-radius: 10px;
+  padding-left: 10px;
+}
+
+.todoNameDiv {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.addTodoDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(1, 56, 15, 0.486);
+  background-color: var(--background-color);
+  color: rgb(49, 182, 182);
+  border-radius: 10px;
+  padding-left: 5px;
+  gap: 10px;
+  cursor: pointer;
+  transition: var(--transition-time);
+}
+
+.addTodoOnOff {
+  height: 20px;
+  width: 20px;
+  display: flex;
+  cursor: pointer;
+  transition: var(--transition-time);
+  background: url("../assets/list.png") center/contain;
+}
+
+.addTodoBtn {
+  all: unset;
+  display: flex;
+  font-size: 1.2rem;
+  flex-grow: 1;
+  font-weight: bold;
+}
+
+.todoSign {
+  height: 18px;
+  width: 18px;
+  display: flex;
+  cursor: pointer;
+  border: 1px solid rgb(70, 68, 68);
+  border-radius: 50%;
+  background-color: var(--font-color);
+  transition: var(--transition-time);
+}
+
+.todoIcon {
+  display: flex;
+  gap: 10px;
+}
+
+.todoDeleteBtn {
+  all: unset;
+  width: 30px;
+  background: url("../assets/delete.svg") center/contain no-repeat;
+  cursor: pointer;
+  transition: var(--transition-time);
+}
+
+.todoEditBtn {
+  all: unset;
+  width: 20px;
+  background: url("../assets/edit.svg") center/contain no-repeat;
+  cursor: pointer;
+  transition: var(--transition-time);
+}
+
+.imageSort {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.listIcon {
+  all: unset;
+  width: 30px;
+  height: 30px;
+  background: url("../assets/list.png") center/contain no-repeat;
+  cursor: pointer;
+  transition: var(--transition-time);
+}
+
+.gridIcon {
+  all: unset;
+  width: 30px;
+  height: 30px;
+  background: url("../assets/grid.png") center/contain no-repeat;
+  cursor: pointer;
+  transition: var(--transition-time);
+}
+
+.todoMinimizeBtn {
+  background-color: var(--button-color);
+  border-radius: 10px;
+  color: var(--font-color);
+  cursor: pointer;
+  text-align: center;
+  transition: var(--transition-time);
+}
+
+/* onClick classList */
+.onClickHideToDoDetails {
+  display: none;
+}
+
+.onClickTodoDate {
+  justify-content: end;
+  display: flex;
+  text-align: center;
+}
+
+.onClickSectionThreeShrink {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.onClickTodoMainShrink {
+  background-color: rgb(223, 189, 189);
+  border-radius: 10px;
+  padding: 10px;
+  width: 205px;
+  animation: var(--animation-details);
+}
+
+.onClickTodoDetailsShrink {
+  display: flex;
+  flex-direction: column;
+}
+
+.onClickFillTodoSign {
+  background-color: var(--button-color);
+  border-color: white;
+}
+
+.onClickDefaultTodoSign {
+  border: 1px solid rgb(70, 68, 68);
+  background-color: var(--font-color);
+}
+
+.signStyle {
+  background-color: rgba(0, 0, 0, 0.404);
+  opacity: 0.2;
+}
+
+.editTodo {
+  display: none;
+}
+
+.onClickEditTodoMainStyle {
+  background-color: var(--font-color);
+  border: none;
+  box-shadow: none;
+}
+
+/* hover Section */
+
+input[type="text"]:focus {
+  border-radius: 0px;
+  font-family: var(--font-name);
+  color: var(--font-color);
+}
+
+input[type="button"]:hover {
+  transform: scale(0.8);
+}
+
+select:hover {
+  transform: scale(0.9);
+}
+
+.addTodoDiv:hover {
+  background-color: var(--font-color);
+  color: rgb(202, 165, 0);
+  background-image: linear-gradient(
+    to right,
+    rgb(252, 252, 252),
+    rgb(250, 237, 167)
+  );
+  border: 2px solid rgb(230, 230, 230);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.todoSign:hover {
+  background-color: rgb(178, 248, 86);
+  opacity: 0.7;
+}
+
+.saveBtn:hover,
+.saveBtnEdit:hover {
+  transform: scale(0.8);
+}
+
+/* work only when onClickEditTodoMainStyle is not there  */
+.todoMain:hover:not(.onClickEditTodoMainStyle) {
+  transform: scale(0.98);
+  border: none;
+  background-color: rgba(134, 168, 143, 0.486);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.listIcon:hover,
+.gridIcon:hover {
+  transform: scale(1.2);
+}
+
+.addTodoDiv:hover > div {
+  height: 20px;
+  width: 20px;
+  display: flex;
+  cursor: pointer;
+  background: url("../assets/add1.png") center/contain;
+}
+
+.todoDeleteBtn:hover,
+.todoEditBtn:hover {
+  transform: scale(1.2);
+  background-color: var(--font-color);
+  border-radius: 5px;
+}
+
+.todoMinimizeBtn:hover {
+  background-color: var(--font-color);
+  color: black;
+}
+
+@keyframes confirmationAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
